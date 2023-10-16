@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-// import TopBar from "../components/TopBar/topbar";
-// import Footer from "../components/footer/footer";
+import TopBar from "../components/topbar";
+import Footer from "../components/footer";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import Head from "next/head";
 
@@ -9,9 +9,9 @@ export default function App({ Component, pageProps }) {
     <>
       <HelmetProvider>
         <Helmet titleTemplate="Beauty Salon" />
-        {/* <TopBar />  */}
+        <TopBar />
         <Component {...pageProps} />
-        {/* <Footer /> */}
+        <Footer />
       </HelmetProvider>
     </>
   );
