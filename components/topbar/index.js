@@ -92,32 +92,23 @@ const TopBar = () => {
             } transition-all duration-300 ease-in-out`}
           >
             <div className="pt-10 font-semibold">
-              <a href="/introduction" className="mr-3 hover:text-cyan-600  ">
-                ТАНИЛЦУУЛГА{" "}
-              </a>
               <a href="/" className="mr-3 hover:text-cyan-600  ">
-                НҮҮР ХУУДАС{" "}
+                HOME{" "}
               </a>
               <a
                 href="/aboutus"
                 className="mr-2 block pt-4 hover:text-cyan-600 "
               >
-                БИДНИЙ ТУХАЙ{" "}
+                ABOUT{" "}
+              </a>
+              <a href="/pages" className="mr-2 pt-4 block hover:text-cyan-600 ">
+                PAGES{" "}
               </a>
               <a
-                href="/events"
-                className="mr-2 pt-4 block hover:text-cyan-600 "
-              >
-                АРГА ХЭМЖЭЭ{" "}
-              </a>
-              <a
-                href="/rooms"
+                href="/contactUs"
                 className="mr-2 pt-4 pb-4 block hover:text-cyan-600 "
               >
-                ӨРӨӨНҮҮД{" "}
-              </a>
-              <a href="/restaurants" className="hover:text-cyan-600 ">
-                РЕСТОРАН{" "}
+                CONTACT US{" "}
               </a>
               <a
                 href="/auth/sign-in"
