@@ -17,7 +17,7 @@ export default function Banner() {
           <h1 className="my-[5px] text-[53px] text-[#141414]">
             Bring The well being & beauty naturally!!!
           </h1>
-          <div class="hero-content">
+          <div className="hero-content">
             Your body does a lot for you, and your caring therapist can help you
             return the favor in a way that benefits both your physical and
             mental wellness.
@@ -31,13 +31,13 @@ export default function Banner() {
         {/* 2 */}
         <div
           id="w-node-f35c7018-1efa-cdc5-95c9-8a68304e37d5-aeb2c8ac"
-          class="hero-image-wrap"
+          className="hero-image-wrap"
         >
           <img
             src="https://uploads-ssl.webflow.com/6135e5f06048e4e83fb2c8ab/618e5d79639af90a181f0c4c_hero-area-women.jpg"
             loading="lazy"
             sizes="(max-width: 479px) 100vw, (max-width: 767px) 71vw, 550px"
-            srcset="https://uploads-ssl.webflow.com/6135e5f06048e4e83fb2c8ab/618e5d79639af90a181f0c4c_hero-area-women-p-500.jpeg 500w, https://uploads-ssl.webflow.com/6135e5f06048e4e83fb2c8ab/618e5d79639af90a181f0c4c_hero-area-women.jpg 550w"
+            srcSet="https://uploads-ssl.webflow.com/6135e5f06048e4e83fb2c8ab/618e5d79639af90a181f0c4c_hero-area-women-p-500.jpeg 500w, https://uploads-ssl.webflow.com/6135e5f06048e4e83fb2c8ab/618e5d79639af90a181f0c4c_hero-area-women.jpg 550w"
             alt="Hero Girl Image"
             className="hero-image"
           ></img>

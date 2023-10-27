@@ -6,6 +6,7 @@ import {
   FaTwitterSquare,
 } from "react-icons/fa";
 import React, { useState } from "react";
+import { Button } from "antd";
 
 const TopBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +55,7 @@ const TopBar = () => {
           </a>
         </div>
       </div>
-      <div className="flex max-[964px]:hidden  font-semibold ">
+      <div className=".flex max-[964px]:hidden  font-semibold inline-block align-middle">
         <a href="/" className="mr-3 hover:text-cyan-600  ">
           Home{" "}
         </a>
@@ -67,11 +68,16 @@ const TopBar = () => {
         <a href="/contactUs" className="mr-3 hover:text-cyan-600 ">
           Contact Us{" "}
         </a>
-        <a href="/auth/sign-in">
+        <a href="/auth/sign-in" className="">
+          <Button className="bg-[#5c8692] .w-[230px] min-h-[40px] text-white text-[16px] font-semibold border-2 rounded-none border-[#5c8692]">
+            MAKE A RESERVATION
+          </Button>
+        </a>
+        {/* <a href="/auth/sign-in">
           <button className="border-slate-500 rounded-xl border w-[150px] h-[35px] relative bottom-1 ml-2 hover:text-cyan-600">
             RESERVATION{" "}
           </button>
-        </a>
+        </a> */}
       </div>
       <button
         onClick={toggleBar}
