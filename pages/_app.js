@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import Head from "next/head";
 import { AuthProvider } from "../contexts/AuthContext";
+import { ServiceProvider } from "../contexts/ServiceContext";
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page);
@@ -12,9 +13,11 @@ export default function App({ Component, pageProps }) {
       <HelmetProvider>
         <Helmet titleTemplate="Beauty Salon" />
         <AuthProvider>
-          <TopBar />
-          {getLayout(<Component {...pageProps} />)}
-          <Footer />
+          <ServiceProvider>
+            <TopBar />
+            {getLayout(<Component {...pageProps} />)}
+            <Footer />
+          </ServiceProvider>
         </AuthProvider>
       </HelmetProvider>
     </>
