@@ -137,12 +137,6 @@ const AuthProvider = (props) => {
         status: "success",
         ...auth_detail,
       });
-      //  console.log(data);
-      //   checkUser({
-      //     userId: data.shareholder.userId,
-      //     companyId: companyId,
-      //     detail: auth_detail,
-      //   });
       message.success(
         <div className="text-[20px]">Та амжилттай нэвтэрлээ</div>
       );

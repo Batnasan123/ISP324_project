@@ -9,10 +9,10 @@ import { LoadingOutlined, CloseCircleOutlined } from "@ant-design/icons";
 const antIcon = <LoadingOutlined style={{ fontSize: 32 }} spin />;
 
 // render display based on status
-const DataDisplayer = ({ status, data, render, tr, events, error, form }) => {
+const DataDisplayer = ({ status, data, render, events, error, form }) => {
   switch (status) {
     case "success":
-      return render({ data, tr, events, form });
+      return render({ data, events, form });
     case "error":
       return (
         <div key="02">

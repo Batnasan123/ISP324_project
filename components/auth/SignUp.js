@@ -68,7 +68,7 @@ const SignUp = ({ data, events, tr }) => {
       <div className="justify-content-between flex">
         <Form.Item className="pt-2 text-left">
           <Button
-            type="link"
+            type="primary"
             htmlType="submit"
             className="bg-[#0F285F] text-white hover:bg-cyan-800 hover:text-white"
           >
