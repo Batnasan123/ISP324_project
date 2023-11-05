@@ -6,7 +6,7 @@ export default function About() {
     <div className="about">
       <div className="overlap-wrapper">
         <div className="overlap">
-          <img className="footer" alt="Footer" src="/img/footer.png" />
+          <img className="footer" alt="Footer" src="./public/img/footer.png" />
           <div className="testimonials">
             <div className="content">
               <div className="title">
@@ -31,19 +31,19 @@ export default function About() {
                         <img
                           className="image"
                           alt="Image"
-                          src="/img/image.png"
+                          src="./public/img/image.png"
                         />
                         <div className="name">
                           <img
                             className="reviews"
                             alt="Reviews"
-                            src="/img/reviews-1.svg"
+                            src="./public/img/reviews-1.svg"
                           />
                           <div className="text-wrapper-2">James Williams</div>
                           <div className="text-wrapper-3">United States</div>
                         </div>
                       </div>
-                      <img className="icon" alt="Icon" src="/img/icon-3.png" />
+                      <img className="icon" alt="Icon" src="./public/img/icon-3.png" />
                     </div>
                   </div>
                 </div>
@@ -64,19 +64,19 @@ export default function About() {
                         <img
                           className="image"
                           alt="Image"
-                          src="/img/image-4.png"
+                          src="./public/img/image-4.png"
                         />
                         <div className="name">
                           <img
                             className="reviews"
                             alt="Reviews"
-                            src="/img/reviews.svg"
+                            src="./public/img/reviews.svg"
                           />
                           <div className="text-wrapper-2">Lieo Jessica</div>
                           <div className="text-wrapper-3">United Kingdom</div>
                         </div>
                       </div>
-                      <img className="icon" alt="Icon" src="/img/icon-3.png" />
+                      <img className="icon" alt="Icon" src="./public/icon-3.png" />
                     </div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export default function About() {
                   </div>
                   <div className="content-2">
                     <div className="element-2">
-                      <img className="img" alt="Image" src="/img/image-3.png" />
+                      <img className="img" alt="Image" src="./public/img/image-3.png" />
                       <div className="content-3">
                         <div className="name-2">
                           <div className="text-wrapper-5">Sherlin D’Cruz</div>
@@ -118,7 +118,7 @@ export default function About() {
                       </div>
                     </div>
                     <div className="element-2">
-                      <img className="img" alt="Image" src="/img/image-2.png" />
+                      <img className="img" alt="Image" src="./public/img/image-2.png" />
                       <div className="content-3">
                         <div className="name-2">
                           <div className="text-wrapper-5">Maria Sharapova</div>
@@ -140,7 +140,7 @@ export default function About() {
                       </div>
                     </div>
                     <div className="element-2">
-                      <img className="img" alt="Image" src="/img/image-1.png" />
+                      <img className="img" alt="Image" src="./public/img/image-1.png" />
                       <div className="content-3">
                         <div className="name-2">
                           <div className="text-wrapper-5">Angeline Jenifer</div>
@@ -165,7 +165,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <img className="img-2" alt="About" src="/img/about.png" />
+            <img className="img-2" alt="About" src="./public/img/about.png" />
             <div className="features">
               <div className="overlap-2">
                 <div className="background-2" />
@@ -212,7 +212,7 @@ export default function About() {
                         </p>
                       </div>
                     </div>
-                    <img className="line" alt="Line" src="/img/line.png" />
+                    <img className="line" alt="Line" src="./public/img/line.png" />
                     <div className="element-3">
                       <div className="icon-wrapper">
                         <img
@@ -234,7 +234,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <img className="banner" alt="Banner" src="/img/banner.png" />
+            <img className="banner" alt="Banner" src="./public/img/banner.png" />
           </div>
         </div>
       </div>
