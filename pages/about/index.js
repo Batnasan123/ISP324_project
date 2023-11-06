@@ -1,17 +1,16 @@
 import React from "react";
-//import "./styles/globals.css";
+import { Button } from "antd";
 
 export default function About() {
   return (
     <div className="about">
       <div className="overlap-wrapper">
         <div className="overlap">
-          <img className="footer" alt="Footer" src="./img/footer.png" />
           <div className="testimonials">
             <div className="content">
               <div className="title">
                 <div className="text-wrapper">TESTIMONIALS</div>
-                <div className="div">What our Customers says...</div>
+                <div className="div">What our Customers say...</div>
               </div>
               <div className="testimonial">
                 <div className="element">
@@ -31,7 +30,7 @@ export default function About() {
                         <img
                           className="image"
                           alt="Image"
-                          src="../img/image.png"
+                          src="./img/image.png"
                         />
                         <div className="name">
                           <img
@@ -67,16 +66,12 @@ export default function About() {
                           src="./img/image-4.png"
                         />
                         <div className="name">
-                          <img
-                            className="reviews"
-                            alt="Reviews"
-                            src="./img/reviews.svg"
-                          />
+                          <img className="reviews" src="./img/reviews.svg"/>
                           <div className="text-wrapper-2">Lieo Jessica</div>
                           <div className="text-wrapper-3">United Kingdom</div>
                         </div>
                       </div>
-                      <img className="icon" alt="Icon" src="/icon-3.png" />
+                      <img className="icon" alt="Icon" src="./img/icon-3.png" />
                     </div>
                   </div>
                 </div>
@@ -87,6 +82,35 @@ export default function About() {
             <div className="our-team">
               <div className="overlap-group-2">
                 <div className="background" />
+
+
+                <div className="grid grid-cols-1 min-[990px]:grid-cols-2">
+                    <div className="content2">
+                      <div className="image">
+                        <div className="overlap-group">
+                          <div className="background" />
+                          <img className="img" alt="Image" src="./img/image-1.png" />
+                        </div>
+                      </div>
+                      
+                        <div className="title">
+                          <div className="div">
+                            <div className="about-us">ABOUT US</div>
+                            <div className="style-is-a">Style is a Reflection of your 
+                            Attitude &amp; your Personality</div>
+                          </div>
+                          <p className="there-are-many">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
+                            some form, buying to injected humour, or randomised words which don&#39;t look even many desktop publishing
+                            packages.
+                          </p>
+                        </div>
+                    
+                    </div>
+                  </div>
+
+
+
                 <div className="our-team-2">
                   <div className="title-2">
                     <div className="text-wrapper">MEET OUR EXPERTS</div>
@@ -165,7 +189,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <img className="img-2" alt="About" src="./img/about.png" />
+            
             <div className="features">
               <div className="overlap-2">
                 <div className="background-2" />
@@ -234,7 +258,28 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <img className="banner" alt="Banner" src="./img/banner.png" />
+
+           
+
+
+
+            <div className="min-h-screen bg-[#ebf3f5] py-[120px] px-6 min-[1280px]:px-40">
+              <div className="grid grid-cols-1">
+                <div className="pr-[100px] max-[990px]:mb-12 inline-block align-middle">
+                  <div className="text-center items-center">
+                    <div className="">SHORT STORY ABOUT US</div>
+                  </div>
+                  <h1 className="my-[5px] text-[53px] text-[#141414] text-center"> 
+                    The big story behind, our beautyness center
+                  </h1>
+                  <a href="#" className="flex justify-center">
+                    <Button className="bg-[#5c8692] w-[230px] h-[56px] text-white text-[16px] font-semibold border-2 rounded-none border-[#5c8692]">
+                      MAKE A RESERVATION
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
