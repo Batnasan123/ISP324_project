@@ -59,7 +59,7 @@ const TopBar = () => {
         <a href="/" className="mr-3 hover:text-cyan-600  ">
           Home{" "}
         </a>
-        <a href="/aboutus" className="mr-3 hover:text-cyan-600  ">
+        <a href="/about" className="mr-3 hover:text-cyan-600  ">
           About{" "}
         </a>
         <a href="/pages" className="mr-3 hover:text-cyan-600  ">
@@ -102,7 +102,7 @@ const TopBar = () => {
                 HOME{" "}
               </a>
               <a
-                href="/aboutus"
+                href="/about"
                 className="mr-2 block pt-4 hover:text-cyan-600 "
               >
                 ABOUT{" "}
