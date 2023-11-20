@@ -8,7 +8,7 @@ const Cards = (props) => {
   useEffect(() => {}, []);
   const service_clicked = () => {
     // console.log("service_clicked", data.id);
-    events.onClick(data?.id);
+    events.onClick(data?.id, data?.serviceName, data?.price);
   };
   return (
     <Card

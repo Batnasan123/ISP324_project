@@ -717,3 +717,6 @@ h2 {
   position: relative;
   width: 508px;
 }
+.ant-picker-ranges {
+  background: rgb(78, 78, 228);
+}

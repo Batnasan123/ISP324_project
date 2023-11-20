@@ -8,18 +8,19 @@ import {
   InputNumber,
   DatePicker,
   TimePicker,
+  Select,
 } from "antd";
 import dayjs from "dayjs";
 import styles from "./CustomTimePicker.module.css";
-
-const serviceForm = ({ data, events }) => {
+import moment from "moment";
+const serviceForm = ({ data, employee_list, events }) => {
   const [form] = Form.useForm();
   useEffect(() => {
     form.setFieldsValue({
       userId: initialData?.user?.id,
-      serviceId: data,
+      serviceId: data?.id,
     });
-  }, [data]);
+  }, [data?.id]);
   const detail = localStorage.getItem("beauty_detail");
   const initialData1 = detail === "undefined" ? null : detail;
   var initialData = initialData1 === null ? {} : JSON.parse(initialData1);
@@ -27,11 +28,20 @@ const serviceForm = ({ data, events }) => {
   //     events.handleCloseModal();
   //     form.submit();
   //   };
+
   const dateFormat = "YYYY/MM/DD";
-  const format = "HH:mm";
-  //   console.log("serviceId", data);
+  const defaultTime = moment().hour(0).minute(0);
+
+  const employeeList = [];
+  employee_list.map((item, index) => {
+    employeeList.push({ value: item?.id, label: item?.firstName });
+  });
   return (
     <div>
+      <div className="text-[18px] font-semibold ">
+        Үйлчилгээний нэр: {data?.name}
+      </div>
+      <div className="text-[18px] font-semibold">Үнэ: {data?.price}</div>
       <Form
         layout="vertical"
         form={form}
@@ -46,7 +56,7 @@ const serviceForm = ({ data, events }) => {
           <InputNumber />
         </Form.Item>
         <Form.Item
-          label="employeeId"
+          label="Ажилчны нэр сонгох"
           name="employeeId"
           rules={[
             {
@@ -55,10 +65,12 @@ const serviceForm = ({ data, events }) => {
             },
           ]}
         >
-          <InputNumber />
+          {/* <InputNumber />
+           */}
+          <Select style={{ width: 300 }} options={employeeList} />
         </Form.Item>
         <Form.Item
-          label="date"
+          label="Огноо нэр сонгох"
           name="date"
           rules={[
             {
@@ -70,7 +82,7 @@ const serviceForm = ({ data, events }) => {
           <DatePicker format={dateFormat} />
         </Form.Item>
         <Form.Item
-          label="time"
+          label="Цаг сонгох"
           name="time"
           rules={[
             {
@@ -79,8 +91,7 @@ const serviceForm = ({ data, events }) => {
             },
           ]}
         >
-          {/* <Input /> */}
-          <TimePicker className={styles.customTimePicker} format="HH:mm" />
+          <TimePicker className="timepicker-background" format="HH" />
         </Form.Item>
         {/* submit button */}
         <Form.Item>

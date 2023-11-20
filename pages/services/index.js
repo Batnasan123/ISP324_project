@@ -7,6 +7,7 @@ import { Modal } from "antd";
 // global state
 import useService from "../../hooks/useService";
 import useOrder from "../../hooks/useOrder";
+import useEmployee from "../../hooks/useEmployee";
 // import useAuth from "../hooks/useAuth";
 
 // design components
@@ -57,7 +58,11 @@ const render = ({ data, events }) => {
         cancelButtonProps={{ style: { display: "none" } }}
       >
         {/* {data?.modal?.modalData} */}
-        <ServiceForm data={data?.modal?.modalData} events={events} />
+        <ServiceForm
+          data={data?.modal?.modalData}
+          employee_list={data?.employee_list}
+          events={events}
+        />
         {/* <Vote data={data} events={events} tr={tr} /> */}
       </Modal>
     </div>
@@ -68,19 +73,21 @@ function Presentation() {
   const router = useRouter();
   const service = useService();
   const order = useOrder();
+  const employee = useEmployee();
   const [modal, setModal] = useState({ modalState: false, modalData: "" });
   useEffect(() => {
     service.loadAllServices();
+    employee.loadAllEmployees();
     console.log("presentation");
   }, []);
 
-  const handleOnClick = (value) => {
-    console.log("handleOnClick", value);
+  const handleOnClick = (value, serviceName, price) => {
+    console.log("handleOnClick", value, serviceName, price);
     setModal(true);
     setModal({
       ...modal,
       modalState: true,
-      modalData: value,
+      modalData: { id: value, name: serviceName, price: price },
     });
   };
   const handleCloseModal = () => {
@@ -96,7 +103,7 @@ function Presentation() {
       values?.serviceId,
       values?.employeeId,
       values?.date.format("YYYY/MM/DD"),
-      values?.time.format("HH:mm")
+      values?.time.format("HH:00")
     );
     // console.log("handleOnFinish", values?.date.format("YYYY/MM/DD"));
     // console.log("handleOnFinish", values?.date.format("YYYY/MM/DD"));
@@ -115,7 +122,11 @@ function Presentation() {
       <DataDisplayer
         error={service?.state?.message}
         status={service?.state?.status}
-        data={{ service_list: service?.state?.list, modal: modal }}
+        data={{
+          service_list: service?.state?.list,
+          modal: modal,
+          employee_list: employee?.state?.list,
+        }}
         render={render}
         // tr={t}
         events={{

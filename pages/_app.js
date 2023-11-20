@@ -6,6 +6,7 @@ import Head from "next/head";
 import { AuthProvider } from "../contexts/AuthContext";
 import { ServiceProvider } from "../contexts/ServiceContext";
 import { OrderProvider } from "../contexts/OrderContext";
+import { EmployeeProvider } from "../contexts/EmployeeContext";
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page);
@@ -16,9 +17,11 @@ export default function App({ Component, pageProps }) {
         <AuthProvider>
           <ServiceProvider>
             <OrderProvider>
-              <TopBar />
-              {getLayout(<Component {...pageProps} />)}
-              <Footer />
+              <EmployeeProvider>
+                <TopBar />
+                {getLayout(<Component {...pageProps} />)}
+                <Footer />
+              </EmployeeProvider>
             </OrderProvider>
           </ServiceProvider>
         </AuthProvider>
