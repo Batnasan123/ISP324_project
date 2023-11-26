@@ -13,6 +13,7 @@ var initialData = {
   message: "",
   token: "",
   detail: {},
+  list: [],
   isInitialized: false,
   isAuthenticated: false,
 };
@@ -140,7 +141,11 @@ const AuthProvider = (props) => {
       message.success(
         <div className="text-[20px]">Та амжилттай нэвтэрлээ</div>
       );
-      router.push("/services");
+      if (data?.user?.status == 0) {
+        router.push("/admin");
+      } else {
+        router.push("/services");
+      }
       //   DeleteMess();
     } catch (err) {
       // console.log(err);
@@ -216,86 +221,89 @@ const AuthProvider = (props) => {
     }
   };
 
-  //   //signOut
-  //   const signOut = () => {
-  //     setSession(null);
-  //     localStorage.removeItem("accessToken");
-  //     localStorage.removeItem("companyId");
-  //     localStorage.removeItem("beauty_detail");
-  //     setState({
-  //       ...state,
-  //       status: "success",
-  //       message: "",
-  //       isAuthenticated: false,
-  //       detail: {},
-  //     });
-  //     // messageApi.open({
-  //     //   type: 'success',
-  //     //   content: 'Ta системээс гарлаа. ',
-  //     //   duration: 12,
+  const getAllUsers = async () => {
+    // console.log("worked");
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
 
-  //     // });
-  //     var config2 = {
-  //       className: "text-xl",
-  //       duration: 3,
-  //       content: t("meeting_logout"),
-  //     };
-  //     message.success(<div className="text-[20px]">{t("meeting_logout")}</div>);
-  //     // message.success(config2);
-  //     router.push("/");
-  //   };
+    var config = {
+      url: "/users",
+      method: "get",
+      data: {},
+    };
 
-  //   const setLoggedInCompany = (companyId) => {
-  //     // console.log("2");
-  //     localStorage.setItem("companyId", companyId);
-  //     // console.log("3");
-  //     setState({
-  //       ...state,
-  //       loggedInCompany: companyId,
-  //     });
-  //   };
-  //
-  //   const comment = async (values) => {
-  //     var config = {
-  //       url: "/comments",
-  //       method: "post",
-  //       data: {
-  //         ...values,
-  //       },
-  //     };
+    try {
+      var response = await axios(config);
+      //   console.log("response", response);
+      const { data } = response.data;
+      console.log("data", data);
+      setState({
+        ...state,
+        status: "success",
+        list: data,
+        message: "",
+      });
+      // }
+    } catch (err) {
+      console.log("err", err);
+      if (err?.statusCode === 409) {
+        router.push("/");
+      }
 
-  //     try {
-  //       await axios(config);
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+    }
+  };
 
-  //       setState({
-  //         ...state,
-  //         status: "success",
-  //       });
-  //       var config15 = {
-  //         className: "text-xl",
-  //         duration: 3,
-  //         content: t("main_comment_submit_success"),
-  //       };
-  //       message.success(
-  //         <div className="text-[20px]">{t("main_comment_submit_success")}</div>
-  //       );
-  //       // message.success(config15);
-  //     } catch (err) {
-  //       setState({
-  //         ...state,
-  //         // status: "error",
-  //         message: err?.message,
-  //       });
-  //       var config16 = {
-  //         className: "text-xl",
-  //         duration: 3,
-  //         content: t(err?.message),
-  //       };
-  //       message.error(<div className="text-[20px]">{t(err?.message)}</div>);
-  //       //message.error(config16);
-  //     }
-  //   };
+  const CreateUser = async (value) => {
+    // let body = { value };
+    // console.log("body", body);
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+    // console.log(body)
 
+    var config = {
+      url: "/users",
+      method: "post",
+      data: {
+        ...value,
+      },
+    };
+    LoadingFun();
+    try {
+      var response = await axios(config);
+      const { data } = response.data;
+      setState({
+        ...state,
+        status: "success",
+      });
+      message.success("Хэрэглэгч амжилттай үүслээ.");
+      // CompanyBydetails(companyId)
+      // console.log('2222')
+    } catch (err) {
+      console.log(err);
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+      if (
+        err?.message == "Your [1] permission has been denied to do this action"
+      ) {
+        message.error("Энэ үйлдлийг хийхэд таны эрх хүрэхгүй байна.", 2);
+      } else message.error(err?.message);
+      DeleteMess();
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -304,6 +312,8 @@ const AuthProvider = (props) => {
         signIn,
         // signOut,
         signUp,
+        getAllUsers,
+        CreateUser,
       }}
     >
       {props.children}
