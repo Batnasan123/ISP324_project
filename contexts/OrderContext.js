@@ -20,14 +20,22 @@ message.config({
   prefixCls: "my-message",
   style: "fontSize:20px",
 });
-const DeleteMess = () => {
-  messageApi.destroy();
-};
 const OrderProvider = (props) => {
   const [state, setState] = useState(initialState);
   const router = useRouter();
 
   const [messageApi, contextHolder] = message.useMessage();
+  const DeleteMess = () => {
+    messageApi.destroy();
+  };
+  const LoadingFun = () => {
+    var config20 = {
+      className: "text-[16px]   ",
+      duration: 0.7,
+      content: "message_loading",
+    };
+    message.loading(<div className="text-[20px]">message_loading</div>);
+  };
   const createOrder = async (userId, serviceId, employeeId, date, time) => {
     setState({
       ...state,
@@ -46,9 +54,8 @@ const OrderProvider = (props) => {
         time: time,
       },
     };
-
     try {
-      console.log("config", config);
+      // console.log("config", config);
       var response = await axios(config);
       // console.log("response", response);
       const { data } = response.data;
@@ -56,7 +63,7 @@ const OrderProvider = (props) => {
       setState({
         ...state,
         status: "success",
-        list: data,
+        // list: data,
         message: "",
       });
       message.success(
@@ -78,11 +85,140 @@ const OrderProvider = (props) => {
     }
   };
 
+  const getAllOrders = async () => {
+    // console.log("worked");
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+
+    var config = {
+      url: "/orders",
+      method: "get",
+      data: {},
+    };
+
+    try {
+      var response = await axios(config);
+      //   console.log("response", response);
+      const { data } = response;
+      // console.log("data orders", data);
+      setState({
+        ...state,
+        status: "success",
+        list: data,
+        message: "",
+      });
+      // }
+    } catch (err) {
+      console.log("err", err);
+      if (err?.statusCode === 409) {
+        router.push("/");
+      }
+
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+    }
+  };
+
+  const UpdateOrder = async (id, date, time) => {
+    // let body = { value };
+    let body = { date, time };
+    // console.log("body", body);
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+    // console.log(body);
+
+    var config = {
+      url: `/orders/${id}`,
+      method: "put",
+      data: {
+        ...body,
+      },
+    };
+    // console.log(config);
+    LoadingFun();
+    try {
+      var response = await axios(config);
+      const { data } = response.data;
+      setState({
+        ...state,
+        status: "success",
+      });
+      message.success("Захиалга амжилттай шинэчлэлээ");
+      // CompanyBydetails(companyId)
+      // console.log('2222')
+    } catch (err) {
+      console.log(err);
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+      if (
+        err?.message == "Your [1] permission has been denied to do this action"
+      ) {
+        message.error("Энэ үйлдлийг хийхэд таны эрх хүрэхгүй байна.", 2);
+      } else message.error(err?.message);
+      DeleteMess();
+    }
+  };
+
+  const DeleteOrder = async (value) => {
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+
+    var config = {
+      url: `/orders/${value}`,
+      method: "delete",
+      // data: {
+      //   ...body,
+      // },
+    };
+    LoadingFun();
+    try {
+      var response = await axios(config);
+      const { data } = response.data;
+      setState({
+        ...state,
+        status: "success",
+      });
+      message.success("Захиалга амжилттай устлаа");
+      // success();
+    } catch (err) {
+      console.log(err);
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+      if (
+        err?.message == "Your [1] permission has been denied to do this action"
+      ) {
+        message.error("Энэ үйлдлийг хийхэд таны эрх хүрэхгүй байна.", 2);
+      } else message.error(err?.message);
+      DeleteMess();
+    }
+  };
   return (
     <OrderContext.Provider
       value={{
         state,
+        contextHolder,
         createOrder,
+        getAllOrders,
+        UpdateOrder,
+        DeleteOrder,
       }}
     >
       {props.children}

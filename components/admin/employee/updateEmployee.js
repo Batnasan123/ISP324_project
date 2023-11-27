@@ -11,7 +11,7 @@ const App = ({ data, events }) => {
 
   const onFinish = (values) => {
     // console.log("values", values);
-    events.handleUpdateUser(values);
+    events.handleUpdateEmployee(values);
     events.handleCancel();
   };
   const status = [

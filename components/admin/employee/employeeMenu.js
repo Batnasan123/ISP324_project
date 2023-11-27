@@ -15,13 +15,6 @@ export default function Agenda({ data, events }) {
       // fixed: "left",
     },
     {
-      title: "status",
-      width: 50,
-      dataIndex: "status",
-      key: "status",
-      // fixed: "left",
-    },
-    {
       title: "firstName",
       width: 60,
       dataIndex: "firstName",
@@ -63,27 +56,24 @@ export default function Agenda({ data, events }) {
   ];
   // console.log(Maindata)
   const data1 = [];
-  const getUserStatus = (status) => {
-    if (status === "9") {
-      return "Хэрэглэгч";
-    } else if (status === "1") {
-      return "Ажилчин";
-    } else {
-      return "Админ";
-    }
-    // console.log("clicked");s
-    // company.SetLogo(value.logo);
-    // router.push("/auth/login");
-  };
+  // const getUserStatus = (status) => {
+  //   if (status === "9") {
+  //     return "Хэрэглэгч";
+  //   } else if (status === "1") {
+  //     return "Ажилчин";
+  //   } else {
+  //     return "Админ";
+  //   }
+  // };
   let number = 0;
-  data?.userList.map((item, index) => {
+  data?.employeeList.map((item, index) => {
     // menu_titleIds.push({ menu_titleId: item });
     number = number + 1;
     // console.log("index", index);
     data1.push({
       key: number,
       list: number,
-      status: getUserStatus(item?.status),
+      // status: getUserStatus(item?.status),
       email: item?.email,
       firstName: item?.firstName,
       lastName: item?.lastName,
@@ -93,9 +83,8 @@ export default function Agenda({ data, events }) {
           onClick={() =>
             events.handleFormData({
               // header: "Хэлэлцэх асуудал",
-              formType: "deleteUserForm",
-              message:
-                item?.email + " >> имайлтэй хэрэглэгчийг" + "-г устгах уу?",
+              formType: "deleteEmployeeForm",
+              message: item?.email + " >> имайлтэй ажилчинг" + "-г устгах уу?",
               data: {
                 id: item?.id,
               },
@@ -111,8 +100,8 @@ export default function Agenda({ data, events }) {
         <Button
           onClick={() =>
             events.handleFormData({
-              // header: "Хэлэлцэх асуудал",
-              formType: "updateUserForm",
+              header: "Ажилчин өөрчлөх",
+              formType: "updateEmployeeForm",
               form: "put",
               data: {
                 status: item?.status,
@@ -141,8 +130,8 @@ export default function Agenda({ data, events }) {
           className="bg-gray-300 font-semibold"
           onClick={() =>
             events.handleFormData({
-              header: "Хэрэглэгч нэмэх",
-              formType: "createUserForm",
+              header: "Ажилчин нэмэх",
+              formType: "createEmployeeForm",
               form: "post",
               // data: [
               //   {
@@ -154,7 +143,7 @@ export default function Agenda({ data, events }) {
             })
           }
         >
-          Шинээр хэрэглэгч нэмэх
+          Шинээр ажилчин нэмэх
         </Button>
       </div>
       <Table

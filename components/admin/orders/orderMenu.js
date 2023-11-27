@@ -15,36 +15,43 @@ export default function Agenda({ data, events }) {
       // fixed: "left",
     },
     {
-      title: "status",
-      width: 50,
-      dataIndex: "status",
-      key: "status",
+      title: "userId",
+      width: 60,
+      dataIndex: "userId",
+      key: "userId",
       // fixed: "left",
     },
     {
-      title: "firstName",
-      width: 60,
-      dataIndex: "firstName",
-      key: "firstName",
-      // fixed: "left",
-    },
-    {
-      title: "lastName",
-      dataIndex: "lastName",
-      key: "lastName",
+      title: "employeeId",
+      dataIndex: "employeeId",
+      key: "employeeId",
       width: 60,
     },
     {
-      title: "email",
-      dataIndex: "email",
-      key: "email",
+      title: "serviceId",
+      dataIndex: "serviceId",
+      key: "serviceId",
       width: 80,
     },
     {
-      title: "phone",
-      dataIndex: "phone",
-      key: "phone",
+      title: "date",
+      dataIndex: "date",
+      key: "date",
       width: 40,
+    },
+    {
+      title: "time",
+      key: "time",
+      // fixed: "right",
+      width: 40,
+      dataIndex: "time",
+    },
+    {
+      title: "updatedAt",
+      key: "updatedAt",
+      // fixed: "right",
+      width: 40,
+      dataIndex: "updatedAt",
     },
     {
       title: "update",
@@ -62,40 +69,67 @@ export default function Agenda({ data, events }) {
     },
   ];
   // console.log(Maindata)
-  const data1 = [];
-  const getUserStatus = (status) => {
-    if (status === "9") {
-      return "Хэрэглэгч";
-    } else if (status === "1") {
-      return "Ажилчин";
-    } else {
-      return "Админ";
-    }
-    // console.log("clicked");s
-    // company.SetLogo(value.logo);
-    // router.push("/auth/login");
+  const checkUserId = (userId) => {
+    var one = "";
+    data?.userList.forEach((element) => {
+      if (element?.id === userId) {
+        // userSet.push(userId);
+        one = element?.email;
+      }
+    });
+    return one;
   };
+
+  const checkEmployeeId = (employeeId) => {
+    var one = "";
+    data?.employeeList.forEach((element) => {
+      if (element?.id === employeeId) {
+        // userSet.push(userId);
+        one = element?.firstName;
+      }
+    });
+    return one;
+  };
+
+  const checkServiceId = (serviceId) => {
+    var one = "";
+    data?.serviceList.forEach((element) => {
+      if (element?.id === serviceId) {
+        // userSet.push(userId);
+        one = element?.serviceName;
+      }
+    });
+    return one;
+  };
+
+  const data1 = [];
   let number = 0;
-  data?.userList.map((item, index) => {
+  data?.orderList.map((item, index) => {
     // menu_titleIds.push({ menu_titleId: item });
     number = number + 1;
     // console.log("index", index);
     data1.push({
       key: number,
       list: number,
-      status: getUserStatus(item?.status),
-      email: item?.email,
-      firstName: item?.firstName,
-      lastName: item?.lastName,
-      phone: item?.phone,
+      userId: checkUserId(item?.userId),
+      serviceId: checkServiceId(item?.serviceId),
+      employeeId: checkEmployeeId(item?.employeeId),
+      time: item?.time,
+      date: item?.date,
+      updatedAt: item?.updatedAt,
       delete: (
         <Button
           onClick={() =>
             events.handleFormData({
-              // header: "Хэлэлцэх асуудал",
-              formType: "deleteUserForm",
+              header: "Захиалга устгах",
+              formType: "deleteOrderForm",
               message:
-                item?.email + " >> имайлтэй хэрэглэгчийг" + "-г устгах уу?",
+                item?.date +
+                "огноотой " +
+                item?.time +
+                " цагтай " +
+                " >> захиалгыг" +
+                "-г устгах уу?",
               data: {
                 id: item?.id,
               },
@@ -111,16 +145,13 @@ export default function Agenda({ data, events }) {
         <Button
           onClick={() =>
             events.handleFormData({
-              // header: "Хэлэлцэх асуудал",
-              formType: "updateUserForm",
+              header: "Захиалга өөрчлөх",
+              formType: "updateOrderForm",
               form: "put",
               data: {
-                status: item?.status,
-                firstName: item?.firstName,
-                lastName: item?.lastName,
-                email: item?.email,
-                phone: item?.phone,
                 id: item?.id,
+                date: item?.date,
+                time: item?.time,
               },
             })
           }
@@ -141,8 +172,8 @@ export default function Agenda({ data, events }) {
           className="bg-gray-300 font-semibold"
           onClick={() =>
             events.handleFormData({
-              header: "Хэрэглэгч нэмэх",
-              formType: "createUserForm",
+              header: "Захиалга нэмэх",
+              formType: "createOrderForm",
               form: "post",
               // data: [
               //   {
@@ -154,7 +185,7 @@ export default function Agenda({ data, events }) {
             })
           }
         >
-          Шинээр хэрэглэгч нэмэх
+          Шинээр захиалга нэмэх
         </Button>
       </div>
       <Table

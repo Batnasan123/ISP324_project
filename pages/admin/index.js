@@ -1,29 +1,62 @@
 // system import
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 // global state
-// import useMenu from "../../hooks/useMenu";
 import useAuth from "../../hooks/useAuth";
+import useOrder from "../../hooks/useOrder";
+import useEmployee from "../../hooks/useEmployee";
+import useService from "../../hooks/useService";
 
 // design components
 import MainLayout from "../../layouts/main";
 import DataDisplayer from "../../components/displayer";
+import { Table, Button, Row, Col, Modal, Tabs, message } from "antd";
+// USER
 import UserMenu from "../../components/admin/users/userMenu";
 import CreateUser from "../../components/admin/users/createUser";
 import UpdateUser from "../../components/admin/users/updateUser";
-// import CreateMenuTitle from "../../components/Admin/createMenuTitle";
-// import EditMenuTitle from "../../components/Admin/EditMenuTitle";
-// import UpdateMenu from "../../components/Admin/updateMenu";
-import { Table, Button, Row, Col, Modal } from "antd";
-import { message } from "antd";
-import Head from "next/head";
+// EMPLOYEE
+import EmployeeMenu from "../../components/admin/employee/employeeMenu";
+import CreateEmployee from "../../components/admin/employee/createEmployee";
+import UpdateEmployee from "../../components/admin/employee/updateEmployee";
+// SERVICE
+import ServiceMenu from "../../components/admin/service/serviceMenu";
+import CreateService from "../../components/admin/service/createService";
+import UpdateService from "../../components/admin/service/updateService";
+// ORDER
+import OrderMenu from "../../components/admin/orders/orderMenu";
+import CreateOrder from "../../components/admin/orders/createOrder";
+import UpdateOrder from "../../components/admin/orders/updateOrder";
 
 const render = ({ data, events, tr }) => {
-  console.log("data", data);
+  // console.log("dataORder", data?.orderList);
   // const dataDetails = [...data?.room];
+  const Data = [
+    {
+      id: 1,
+      title: "Хэрэглэгч",
+      children: <UserMenu data={data} events={events} />,
+    },
+    {
+      id: 2,
+      title: "Ажилчин",
+      children: <EmployeeMenu data={data} events={events} />,
+    },
+    {
+      id: 3,
+      title: "Үйлчилгээ",
+      children: <ServiceMenu data={data} events={events} />,
+    },
+    {
+      id: 3,
+      title: "Захиалга",
+      children: <OrderMenu data={data} events={events} />,
+    },
+  ];
   return (
-    <div className="min-h-screen min-[350px]:px-12">
+    <div className="min-h-screen min-[350px]:px-6">
       <Head>
         <title>Админ хэсэг</title>
       </Head>
@@ -44,7 +77,20 @@ const render = ({ data, events, tr }) => {
             {events.handleFormRender(data?.form?.formType, data, events)}
           </Modal>
         </div>
-        <UserMenu data={data} events={events} />
+        <Tabs
+          // onTabClick={Clicktab}
+          defaultActiveKey="1"
+          type="card"
+          size="large"
+          items={Data.map((ele, index) => {
+            //   const id = String(i + 1)
+            return {
+              label: ele.title,
+              key: index,
+              children: ele.children,
+            };
+          })}
+        />
       </div>
     </div>
   );
@@ -53,13 +99,36 @@ const render = ({ data, events, tr }) => {
 function Presentation() {
   const router = useRouter();
   const user = useAuth();
+  const order = useOrder();
+  const employee = useEmployee();
+  const service = useService();
+
   useEffect(() => {
+    const getUserAndOrder = async () => {
+      await user.getAllUsers();
+      await employee.loadAllEmployees();
+      await service.loadAllServices();
+      await order.getAllOrders();
+    };
     if (!localStorage.getItem("accessToken")) {
       router.push("/");
       message.error("Та нэвтэрч орно уу!");
     }
-    user.getAllUsers();
+    // console.log("useState");
+    getUserAndOrder();
+    return () => {
+      // this now gets called when the component unmounts
+    };
   }, []);
+  // useEffect(() => {
+  //   if (!localStorage.getItem("accessToken")) {
+  //     router.push("/");
+  //     message.error("Та нэвтэрч орно уу!");
+  //   }
+  //   console.log("useState");
+  //   user.getAllUsers();
+  //   order.getAllOrders();
+  // }, []);
 
   const [mainForm, setMainForm] = useState({
     formType: "",
@@ -79,54 +148,214 @@ function Presentation() {
       // id: auth?.state?.loggedInCompany,
     });
   };
-
   const handleFormRender = (type, data, events) => {
-    console.log("data", data?.form?.data);
+    // console.log("data", data?.form?.data);
+    // console.log(data?.form?.data?.type)
     switch (type) {
-      case "createUser":
+      // USER
+      case "createUserForm":
         return <CreateUser data={data} events={events} />;
       case "updateUserForm":
         return <UpdateUser data={data} events={events} />;
-        // case "delete":
-        //   // console.log(data?.form?.data?.type)
-        //   return (
-        //     <div>
-        //       {data?.form?.message}
-        //       <div className="my-3 flex">
-        //         <Button
-        //           onClick={() => {
-        //             handleDelete(data?.form?.data?.id);
-        //           }}
-        //           type="primary"
-        //           danger
-        //         >
-        //           Тийм
-        //         </Button>
-        //       </div>
-        //     </div>
-        //   );
+      case "deleteUserForm":
+        return (
+          <div>
+            {data?.form?.message}
+            <div className="my-3 flex">
+              <Button
+                onClick={() => {
+                  handleDeleteUser(data?.form?.data?.id);
+                }}
+                type="primary"
+                danger
+              >
+                Тийм
+              </Button>
+            </div>
+          </div>
+        );
+      // EMPLOYEE
+      case "createEmployeeForm":
+        return <CreateEmployee data={data} events={events} />;
+      case "updateEmployeeForm":
+        return <UpdateEmployee data={data} events={events} />;
+      case "deleteEmployeeForm":
+        return (
+          <div>
+            {data?.form?.message}
+            <div className="my-3 flex">
+              <Button
+                onClick={() => {
+                  handleDeleteUser(data?.form?.data?.id);
+                }}
+                type="primary"
+                danger
+              >
+                Тийм
+              </Button>
+            </div>
+          </div>
+        );
+      // SERVICE
+      case "createServiceForm":
+        return <CreateService data={data} events={events} />;
+      case "updateServiceForm":
+        return <UpdateService data={data} events={events} />;
+      case "deleteServiceForm":
+        return (
+          <div>
+            {data?.form?.message}
+            <div className="my-3 flex">
+              <Button
+                onClick={() => {
+                  handleDeleteService(data?.form?.data?.id);
+                }}
+                type="primary"
+                danger
+              >
+                Тийм
+              </Button>
+            </div>
+          </div>
+        );
+      // ORDER
+      case "createOrderForm":
+        return <CreateOrder data={data} events={events} />;
+      case "updateOrderForm":
+        return <UpdateOrder data={data} events={events} />;
+      case "deleteOrderForm":
+        return (
+          <div>
+            {data?.form?.message}
+            <div className="my-3 flex">
+              <Button
+                onClick={() => {
+                  handleDeleteOrder(data?.form?.data?.id);
+                }}
+                type="primary"
+                danger
+              >
+                Тийм
+              </Button>
+            </div>
+          </div>
+        );
         break;
       default:
         return <div>hi</div>;
     }
   };
-  const handleOnClick = (value) => {
-    // console.log("clicked");s
-    // company.SetLogo(value.logo);
-    // router.push("/auth/login");
-  };
+
   const handleCancel = (value) => {
     setMainForm({
       visible: false,
     });
   };
+  //
+  //
+  // USER FUNCTIONS
   const handleCreateUser = async (value) => {
-    // console.log("clicked", value);
     await user.CreateUser(value);
     setMainForm({
       visible: false,
     });
     user.getAllUsers();
+  };
+  const handleUpdateUser = async (value) => {
+    await user.UpdateUser(value);
+    setMainForm({
+      visible: false,
+    });
+    user.getAllUsers();
+  };
+  const handleDeleteUser = async (value) => {
+    await user.DeleteUser(value);
+    setMainForm({
+      visible: false,
+    });
+    user.getAllUsers();
+  };
+  //
+  //
+  // EMPLOYEE FUNCTIONS
+  const handleCreateEmployee = async (value) => {
+    await employee.CreateEmployees(value);
+    setMainForm({
+      visible: false,
+    });
+    employee.loadAllEmployees();
+  };
+  const handleUpdateEmployee = async (value) => {
+    await employee.UpdateEmployees(value);
+    setMainForm({
+      visible: false,
+    });
+    employee.loadAllEmployees();
+  };
+  const handleDeleteEmployee = async (value) => {
+    await employee.DeleteEmployees(value);
+    setMainForm({
+      visible: false,
+    });
+    employee.loadAllEmployees();
+  };
+  //
+  //
+  // SERVICE FUNCTIONS
+  const handleCreateOrder = async (value) => {
+    await order.createOrder(
+      value?.userId,
+      value?.serviceId,
+      value?.employeeId,
+      value?.date.format("YYYY/MM/DD"),
+      value?.time.format("HH:00")
+    );
+    setMainForm({
+      visible: false,
+    });
+    order.getAllOrders();
+  };
+  const handleUpdateOrder = async (value) => {
+    await order.UpdateOrder(
+      value?.id,
+      value?.date.format("YYYY/MM/DD"),
+      value?.time.format("HH:00")
+    );
+    setMainForm({
+      visible: false,
+    });
+    order.getAllOrders();
+  };
+  const handleDeleteOrder = async (value) => {
+    await order.DeleteOrder(value);
+    setMainForm({
+      visible: false,
+    });
+    order.getAllOrders();
+  };
+  //
+  //
+  // ORDER FUNCTIONS
+  const handleCreateService = async (value) => {
+    await service.CreateService(value);
+    setMainForm({
+      visible: false,
+    });
+    service.loadAllServices();
+  };
+  const handleUpdateService = async (value) => {
+    await service.UpdateService(value);
+    setMainForm({
+      visible: false,
+    });
+    service.loadAllServices();
+  };
+  const handleDeleteService = async (value) => {
+    await service.DeleteService(value);
+    setMainForm({
+      visible: false,
+    });
+    service.loadAllServices();
   };
   return (
     <React.Fragment>
@@ -139,26 +368,42 @@ function Presentation() {
       >
         Админ хэсэг
       </h1>
-      {/* {menu?.contextHolder} */}
+      {user?.contextHolder}
+      {employee?.contextHolder}
+      {order?.contextHolder}
+      {service?.contextHolder}
       <DataDisplayer
-        // error={menu?.state?.message}
-        // status={menu?.state?.status}
-        status={user?.state?.status}
+        // error={user?.state?.message}
+        status={"success"}
+        // status={user?.state?.status}
         data={{
           userList: user?.state?.list,
+          orderList: order?.state?.list,
+          employeeList: employee?.state?.list,
+          serviceList: service?.state?.list,
           form: mainForm,
         }}
         render={render}
         events={{
-          //   updateMenuTitle: updateMenuTitle,
-          //   deleteMenuTitle: deleteMenuTitle,
-          handleClick: handleOnClick,
+          handleCancel: handleCancel,
           handleFormData: handleFormData,
           handleFormRender: handleFormRender,
+          // users
           handleCreateUser: handleCreateUser,
-          //   handleCreateTitle: handleCreateTitle,
-          //   handleUpdate: handleUpdate,
-          handleCancel: handleCancel,
+          handleUpdateUser: handleUpdateUser,
+          handleDeleteUser: handleDeleteUser,
+          // employee
+          handleCreateEmployee: handleCreateEmployee,
+          handleUpdateEmployee: handleUpdateEmployee,
+          handleDeleteEmployee: handleDeleteEmployee,
+          // service
+          handleCreateService: handleCreateService,
+          handleUpdateService: handleUpdateService,
+          handleDeleteService: handleDeleteService,
+          // order
+          handleCreateOrder: handleCreateOrder,
+          handleDeleteOrder: handleDeleteOrder,
+          handleUpdateOrder: handleUpdateOrder,
         }}
       />
     </React.Fragment>

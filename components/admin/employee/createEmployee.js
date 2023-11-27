@@ -7,33 +7,34 @@ import React, { useEffect } from "react";
 
 const { TextArea } = Input;
 const App = ({ data, events }) => {
-  // console.log("data123", data);
+  const Type = data?.func;
 
   const onFinish = (values) => {
     // console.log("values", values);
-    events.handleUpdateUser(values);
+    events.handleCreateEmployee(values);
     events.handleCancel();
   };
   const status = [
     { value: 9, label: "хэрэглэгч" },
     { value: 1, label: "ажилчин" },
   ];
-
+  // const users = [];
+  // data?.userList.map((item, index) => {
+  //   users.push({ value: item?.id, label: item?.title_name });
+  // });
   const [form] = Form.useForm();
   const defaultValues = {
-    id: data?.form?.data?.id,
-    status: data?.form?.data?.status,
-    firstName: data?.form?.data?.firstName,
-    lastName: data?.form?.data?.lastName,
-    email: data?.form?.data?.email,
-    phone: data?.form?.data?.phone,
+    status: 9,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
     password: "",
   };
 
   useEffect(() => {
     form.setFieldsValue(defaultValues);
   }, [form, defaultValues]);
-
   return (
     <Form
       form={form}
@@ -50,16 +51,16 @@ const App = ({ data, events }) => {
       onFinish={onFinish}
       autoComplete="off"
     >
-      <Form.Item hidden name="id">
-        <InputNumber />
-      </Form.Item>
       <Form.Item label="status" name="status">
-        <Select options={status} />
+        <Select
+          // style={{ width: 120 }}
+          // onChange={handleChange}
+          options={status}
+        />
       </Form.Item>
       <Form.Item
         label="firstName"
         name="firstName"
-        // defaultValue={data?.form?.data?.item_name}
         rules={[
           {
             required: true,
@@ -67,16 +68,15 @@ const App = ({ data, events }) => {
           },
         ]}
       >
-        <TextArea rows={""} />
+        <TextArea />
       </Form.Item>
-
       <Form.Item
         label="lastName"
         name="lastName"
         rules={[
           {
             required: true,
-            message: "Та lastName оруулна уу !",
+            message: "Та lastName аа оруулна уу.",
           },
         ]}
       >
@@ -88,11 +88,11 @@ const App = ({ data, events }) => {
         rules={[
           {
             required: true,
-            message: "Та email оруулна уу !",
+            message: "Та email аа оруулна уу.",
           },
         ]}
       >
-        <TextArea rows={""} />
+        <Input type="email" />
       </Form.Item>
       <Form.Item
         label="phone"
@@ -109,12 +109,12 @@ const App = ({ data, events }) => {
       <Form.Item
         label="password"
         name="password"
-        // rules={[
-        //   {
-        //     required: true,
-        //     message: "Та password оруулна уу !",
-        //   },
-        // ]}
+        rules={[
+          {
+            required: true,
+            message: "Та password оруулна уу !",
+          },
+        ]}
       >
         <TextArea rows={""} />
       </Form.Item>
@@ -124,7 +124,7 @@ const App = ({ data, events }) => {
           span: 16,
         }}
       >
-        <Button htmlType="submit">Өөрчлөх</Button>
+        <Button htmlType="submit">Нэмэх</Button>
       </Form.Item>
     </Form>
   );

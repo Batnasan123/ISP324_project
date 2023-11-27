@@ -239,7 +239,7 @@ const AuthProvider = (props) => {
       var response = await axios(config);
       //   console.log("response", response);
       const { data } = response.data;
-      console.log("data", data);
+      // console.log("data", data);
       setState({
         ...state,
         status: "success",
@@ -304,16 +304,109 @@ const AuthProvider = (props) => {
       DeleteMess();
     }
   };
+  const UpdateUser = async ({
+    email,
+    firstName,
+    lastName,
+    password,
+    phone,
+    status,
+    id,
+  }) => {
+    // let body = { value };
+    let body = { email, firstName, lastName, password, phone, status };
+    // console.log("body", body);
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+    // console.log(body)
+
+    var config = {
+      url: `/users/${id}`,
+      method: "put",
+      data: {
+        ...body,
+      },
+    };
+    LoadingFun();
+    try {
+      var response = await axios(config);
+      const { data } = response.data;
+      setState({
+        ...state,
+        status: "success",
+      });
+      message.success("Хэрэглэгч амжилттай шинэчлэлээ");
+      // CompanyBydetails(companyId)
+      // console.log('2222')
+    } catch (err) {
+      console.log(err);
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+      if (
+        err?.message == "Your [1] permission has been denied to do this action"
+      ) {
+        message.error("Энэ үйлдлийг хийхэд таны эрх хүрэхгүй байна.", 2);
+      } else message.error(err?.message);
+      DeleteMess();
+    }
+  };
+
+  const DeleteUser = async (value) => {
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+
+    var config = {
+      url: `/users/${value}`,
+      method: "delete",
+      // data: {
+      //   ...body,
+      // },
+    };
+    LoadingFun();
+    try {
+      var response = await axios(config);
+      const { data } = response.data;
+      setState({
+        ...state,
+        status: "success",
+      });
+      message.success("Хэрэглэгч амжилттай устлаа");
+      // success();
+    } catch (err) {
+      console.log(err);
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+      if (
+        err?.message == "Your [1] permission has been denied to do this action"
+      ) {
+        message.error("Энэ үйлдлийг хийхэд таны эрх хүрэхгүй байна.", 2);
+      } else message.error(err?.message);
+      DeleteMess();
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
         state,
-        // comment,
+        contextHolder,
         signIn,
-        // signOut,
         signUp,
         getAllUsers,
         CreateUser,
+        UpdateUser,
+        DeleteUser,
       }}
     >
       {props.children}

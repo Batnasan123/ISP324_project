@@ -42,7 +42,7 @@ function Presentation() {
   }, []);
 
   const handleOnClick = (value) => {
-    console.log("sign_up_values", value);
+    // console.log("sign_up_values", value);
     auth.signUp(value);
     // auth.setLoggedInCompany(value.id);
     // company.SetLogo(value.logo);

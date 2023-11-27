@@ -82,7 +82,7 @@ function Presentation() {
   }, []);
 
   const handleOnClick = (value, serviceName, price) => {
-    console.log("handleOnClick", value, serviceName, price);
+    // console.log("handleOnClick", value, serviceName, price);
     setModal(true);
     setModal({
       ...modal,

@@ -11,7 +11,7 @@ const App = ({ data, events }) => {
 
   const onFinish = (values) => {
     // console.log("values", values);
-    events.handleUpdateUser(values);
+    events.handleUpdateService(values);
     events.handleCancel();
   };
   const status = [
@@ -23,11 +23,8 @@ const App = ({ data, events }) => {
   const defaultValues = {
     id: data?.form?.data?.id,
     status: data?.form?.data?.status,
-    firstName: data?.form?.data?.firstName,
-    lastName: data?.form?.data?.lastName,
-    email: data?.form?.data?.email,
-    phone: data?.form?.data?.phone,
-    password: "",
+    serviceName: data?.form?.data?.serviceName,
+    price: data?.form?.data?.price,
   };
 
   useEffect(() => {
@@ -54,69 +51,35 @@ const App = ({ data, events }) => {
         <InputNumber />
       </Form.Item>
       <Form.Item label="status" name="status">
-        <Select options={status} />
+        <Select
+          // style={{ width: 120 }}
+          // onChange={handleChange}
+          options={status}
+        />
       </Form.Item>
       <Form.Item
-        label="firstName"
-        name="firstName"
-        // defaultValue={data?.form?.data?.item_name}
+        label="serviceName"
+        name="serviceName"
         rules={[
           {
             required: true,
-            message: "Та firstName аа оруулна уу.",
+            message: "Та serviceName аа оруулна уу.",
           },
         ]}
       >
-        <TextArea rows={""} />
+        <TextArea />
       </Form.Item>
-
       <Form.Item
-        label="lastName"
-        name="lastName"
+        label="price"
+        name="price"
         rules={[
           {
             required: true,
-            message: "Та lastName оруулна уу !",
+            message: "Та price оруулна уу !",
           },
         ]}
       >
-        <TextArea rows={""} />
-      </Form.Item>
-      <Form.Item
-        label="email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Та email оруулна уу !",
-          },
-        ]}
-      >
-        <TextArea rows={""} />
-      </Form.Item>
-      <Form.Item
-        label="phone"
-        name="phone"
-        rules={[
-          {
-            required: true,
-            message: "Та phone оруулна уу !",
-          },
-        ]}
-      >
-        <TextArea rows={""} />
-      </Form.Item>
-      <Form.Item
-        label="password"
-        name="password"
-        // rules={[
-        //   {
-        //     required: true,
-        //     message: "Та password оруулна уу !",
-        //   },
-        // ]}
-      >
-        <TextArea rows={""} />
+        <InputNumber rows={""} />
       </Form.Item>
       <Form.Item
         wrapperCol={{
@@ -124,7 +87,7 @@ const App = ({ data, events }) => {
           span: 16,
         }}
       >
-        <Button htmlType="submit">Өөрчлөх</Button>
+        <Button htmlType="submit">Нэмэх</Button>
       </Form.Item>
     </Form>
   );

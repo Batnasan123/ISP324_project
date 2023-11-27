@@ -9,7 +9,7 @@ export default function Agenda({ data, events }) {
   const columns = [
     {
       title: "№",
-      width: 19,
+      width: 10,
       dataIndex: "list",
       key: "list",
       // fixed: "left",
@@ -22,43 +22,35 @@ export default function Agenda({ data, events }) {
       // fixed: "left",
     },
     {
-      title: "firstName",
+      title: "serviceName",
       width: 60,
-      dataIndex: "firstName",
-      key: "firstName",
+      dataIndex: "serviceName",
+      key: "serviceName",
       // fixed: "left",
     },
     {
-      title: "lastName",
-      dataIndex: "lastName",
-      key: "lastName",
+      title: "price",
+      dataIndex: "price",
+      key: "price",
       width: 60,
     },
     {
-      title: "email",
-      dataIndex: "email",
-      key: "email",
-      width: 80,
-    },
-    {
-      title: "phone",
-      dataIndex: "phone",
-      key: "phone",
-      width: 40,
+      title: "updatedAt",
+      dataIndex: "updatedAt",
+      key: "updatedAt",
+      width: 60,
     },
     {
       title: "update",
-      key: "update",
-      // fixed: "right",
-      width: 40,
       dataIndex: "update",
+      key: "update",
+      width: 60,
     },
     {
       title: "delete",
-      key: "delete",
-      // fixed: "right",
-      width: 40,
       dataIndex: "delete",
+      key: "delete",
+      width: 60,
     },
   ];
   // console.log(Maindata)
@@ -76,26 +68,25 @@ export default function Agenda({ data, events }) {
     // router.push("/auth/login");
   };
   let number = 0;
-  data?.userList.map((item, index) => {
+  data?.serviceList.map((item, index) => {
     // menu_titleIds.push({ menu_titleId: item });
     number = number + 1;
     // console.log("index", index);
     data1.push({
       key: number,
       list: number,
-      status: getUserStatus(item?.status),
-      email: item?.email,
-      firstName: item?.firstName,
-      lastName: item?.lastName,
-      phone: item?.phone,
+      status: item?.status,
+      serviceName: item?.serviceName,
+      price: item?.price,
+      updatedAt: item?.updatedAt,
       delete: (
         <Button
           onClick={() =>
             events.handleFormData({
-              // header: "Хэлэлцэх асуудал",
-              formType: "deleteUserForm",
+              // header: "",
+              formType: "deleteServiceForm",
               message:
-                item?.email + " >> имайлтэй хэрэглэгчийг" + "-г устгах уу?",
+                item?.serviceName + " >> нэртэй үйлчилгээг" + "-г устгах уу?",
               data: {
                 id: item?.id,
               },
@@ -111,15 +102,13 @@ export default function Agenda({ data, events }) {
         <Button
           onClick={() =>
             events.handleFormData({
-              // header: "Хэлэлцэх асуудал",
-              formType: "updateUserForm",
+              header: "Үйлчилгээ өөрчлөх",
+              formType: "updateServiceForm",
               form: "put",
               data: {
                 status: item?.status,
-                firstName: item?.firstName,
-                lastName: item?.lastName,
-                email: item?.email,
-                phone: item?.phone,
+                serviceName: item?.serviceName,
+                price: item?.price,
                 id: item?.id,
               },
             })
@@ -141,8 +130,8 @@ export default function Agenda({ data, events }) {
           className="bg-gray-300 font-semibold"
           onClick={() =>
             events.handleFormData({
-              header: "Хэрэглэгч нэмэх",
-              formType: "createUserForm",
+              header: "Үйлчилгээ нэмэх",
+              formType: "createServiceForm",
               form: "post",
               // data: [
               //   {
@@ -154,7 +143,7 @@ export default function Agenda({ data, events }) {
             })
           }
         >
-          Шинээр хэрэглэгч нэмэх
+          Шинээр Үйлчилгээ нэмэх
         </Button>
       </div>
       <Table

@@ -11,12 +11,12 @@ const App = ({ data, events }) => {
 
   const onFinish = (values) => {
     // console.log("values", values);
-    events.handleCreateUser(values);
+    events.handleCreateService(values);
     events.handleCancel();
   };
   const status = [
-    { value: 9, label: "хэрэглэгч" },
-    { value: 1, label: "ажилчин" },
+    { value: "active", label: "active" },
+    { value: "not active", label: "not active" },
   ];
   // const users = [];
   // data?.userList.map((item, index) => {
@@ -24,14 +24,10 @@ const App = ({ data, events }) => {
   // });
   const [form] = Form.useForm();
   const defaultValues = {
-    status: 9,
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    password: "",
+    status: "active",
+    serviceName: "",
+    price: "",
   };
-
   useEffect(() => {
     form.setFieldsValue(defaultValues);
   }, [form, defaultValues]);
@@ -59,64 +55,28 @@ const App = ({ data, events }) => {
         />
       </Form.Item>
       <Form.Item
-        label="firstName"
-        name="firstName"
+        label="serviceName"
+        name="serviceName"
         rules={[
           {
             required: true,
-            message: "Та firstName аа оруулна уу.",
+            message: "Та serviceName аа оруулна уу.",
           },
         ]}
       >
         <TextArea />
       </Form.Item>
       <Form.Item
-        label="lastName"
-        name="lastName"
+        label="price"
+        name="price"
         rules={[
           {
             required: true,
-            message: "Та lastName аа оруулна уу.",
+            message: "Та price оруулна уу !",
           },
         ]}
       >
-        <TextArea rows={""} />
-      </Form.Item>
-      <Form.Item
-        label="email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Та email аа оруулна уу.",
-          },
-        ]}
-      >
-        <Input type="email" />
-      </Form.Item>
-      <Form.Item
-        label="phone"
-        name="phone"
-        rules={[
-          {
-            required: true,
-            message: "Та phone оруулна уу !",
-          },
-        ]}
-      >
-        <TextArea rows={""} />
-      </Form.Item>
-      <Form.Item
-        label="password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Та password оруулна уу !",
-          },
-        ]}
-      >
-        <TextArea rows={""} />
+        <InputNumber rows={""} />
       </Form.Item>
       <Form.Item
         wrapperCol={{
