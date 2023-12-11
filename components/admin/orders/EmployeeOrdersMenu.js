@@ -185,7 +185,7 @@ export default function Agenda({ data, events }) {
             })
           }
         >
-          Өөртөө шинээр захиалга нэмэх
+          Шинээр захиалга нэмэх
         </Button>
       </div>
       <Table

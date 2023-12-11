@@ -12,7 +12,7 @@ export default function Document() {
         <link
           rel="icon"
           // href=""
-          // href="https://res.cloudinary.com/dfhvxswh6/image/upload/v1691979048/326238817_843833970046776_3151643487262701768_n_wbwl14.png"
+          href="https://assets-global.website-files.com/6135e5f06048e4e83fb2c8ab/6191ef0044ab4794219e090c_favicon.png"
         />
       </Head>
       <body>

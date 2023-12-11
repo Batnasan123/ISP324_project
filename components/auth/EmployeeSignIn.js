@@ -12,7 +12,7 @@ const SignUp = ({ data, events, tr }) => {
     form.setFieldsValue({
       email: null,
       password: null,
-      route: "/users",
+      route: "/employee",
     });
   }, []);
   const handleFinish = (values) => {
@@ -23,7 +23,7 @@ const SignUp = ({ data, events, tr }) => {
   const defaultValues = {
     email: null,
     password: null,
-    route: "/users",
+    route: "/employee",
   };
   return (
     <Form
@@ -98,18 +98,6 @@ const SignUp = ({ data, events, tr }) => {
           >
             Буцах
           </Button>
-        </Form.Item>
-      </div>
-      <div className="">
-        <Form.Item className="">
-          <Link href="/employee/auth/sign-in">
-            <Button
-              type="link"
-              className="font-semibold text-[#0F285F]  underline-offset-1 "
-            >
-              Ажилтанаар нэвтрэх
-            </Button>
-          </Link>
         </Form.Item>
       </div>
     </Form>

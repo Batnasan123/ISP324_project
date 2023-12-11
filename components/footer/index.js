@@ -39,7 +39,26 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-wrap justify-evenly">
-        <ul>
+        <div className="grid grid-flow-col auto-cols-auto gap-10">
+          <a className="hover:underline" href="/">
+            HOME
+          </a>
+          <a className="hover:underline" href="/about">
+            ABOUT
+          </a>
+          <a className="hover:underline" href="/pages">
+            PAGES
+          </a>
+          <a className="hover:underline" href="/contactUs">
+            CONTACT US
+          </a>
+          <a className="hover:underline" href="/auth/sign-in">
+            MAKE RESERVATION
+          </a>
+        </div>
+        <div>ADDRESS: UFE, Ulaanbaatar, Mongolia</div>
+        <div>PHONE: 95802438</div>
+        {/* <ul>
           <li>Explore</li>
           <li>Home</li>
           <li>About Us</li>
@@ -62,15 +81,15 @@ export default function Footer() {
           <li>Services</li>
           <li>Articles</li>
           <li>Contact Us</li>
-        </ul>
-        <ul>
+        </ul> */}
+        {/* <ul>
           <li>Explore</li>
           <li>Home</li>
           <li>About Us</li>
           <li>Services</li>
           <li>Articles</li>
           <li>Contact Us</li>
-        </ul>
+        </ul> */}
       </div>
       <div></div>
     </div>

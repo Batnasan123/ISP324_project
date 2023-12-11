@@ -37,23 +37,23 @@ const TopBar = () => {
   const checkAuth = () => {
     if (state) {
       return (
-        <a
-          href="/auth/sign-in"
-          className="text-red-400 ml-2 bg-red-100 rounded-3xl p-2  hover:text-red-600"
-          onClick={logout}
-        >
-          {/* <button
+        <div className="ml-2 mt-2">
+          <a className="hover:text-cyan-600" href="/profile">
+            PROFILE
+          </a>
+          <a
+            href="/auth/sign-in"
+            className="text-red-400 ml-2 bg-red-100 rounded-3xl p-2  hover:text-red-600"
             onClick={logout}
-            className=" .w-[100px] .h-[35px] .relative .bottom-1 text-red-400  hover:text-red-600 max-[400px]:pb-4 flex"
-          > */}
-          ГАРАХ
-          {/* </button> */}
-        </a>
+          >
+            LOG OUT
+          </a>
+        </div>
       );
     }
   };
   return (
-    <div className="w-full h-[90px] border-solid  .rounded-b-2xl shadow-lg bg-white flex flex-wrap mr-2 justify-between items-center px-6 py-8">
+    <div className="w-full h-[90px] border-solid  .rounded-b-2xl shadow-lg bg-white flex .flex-wrap mr-2 justify-between items-center px-6 py-8">
       <div className="flex">
         <a href="/" className="pr-4">
           <img
@@ -83,17 +83,17 @@ const TopBar = () => {
           </a>
         </div>
       </div>
-      <div className=".flex max-[860px]:hidden  font-semibold inline-block align-middle">
-        <a href="/" className="mr-3 hover:text-cyan-600  ">
+      <div className=".flex max-[860px]:hidden  font-semibold inline-flex align-middle">
+        <a href="/" className="mr-3 hover:text-cyan-600 mt-2">
           Home{" "}
         </a>
-        <a href="/about" className="mr-3 hover:text-cyan-600  ">
+        <a href="/about" className="mr-3 hover:text-cyan-600  mt-2">
           About{" "}
         </a>
-        <a href="/pages" className="mr-3 hover:text-cyan-600  ">
+        <a href="/pages" className="mr-3 hover:text-cyan-600  mt-2">
           Pages{" "}
         </a>
-        <a href="/contactUs" className="mr-3 hover:text-cyan-600 ">
+        <a href="/contactUs" className="mr-3 hover:text-cyan-600 mt-2">
           Contact Us{" "}
         </a>
         <a href="/auth/sign-in" className="">

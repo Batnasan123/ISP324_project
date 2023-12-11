@@ -125,6 +125,46 @@ const OrderProvider = (props) => {
     }
   };
 
+  const getEmployeeOrders = async (employeeId) => {
+    // console.log("worked");
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+
+    var config = {
+      url: `/orders/getOrdersByEmployeeId/${employeeId}`,
+      method: "get",
+      data: {},
+    };
+
+    try {
+      var response = await axios(config);
+      //   console.log("response", response);
+      const { data } = response;
+      // console.log("data orders", data);
+      setState({
+        ...state,
+        status: "success",
+        list: data,
+        message: "",
+      });
+      // }
+    } catch (err) {
+      console.log("err", err);
+      if (err?.statusCode === 409) {
+        router.push("/");
+      }
+
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+    }
+  };
+
   const UpdateOrder = async (id, date, time) => {
     // let body = { value };
     let body = { date, time };
@@ -217,6 +257,7 @@ const OrderProvider = (props) => {
         contextHolder,
         createOrder,
         getAllOrders,
+        getEmployeeOrders,
         UpdateOrder,
         DeleteOrder,
       }}

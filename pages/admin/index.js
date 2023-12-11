@@ -110,9 +110,18 @@ function Presentation() {
       await service.loadAllServices();
       await order.getAllOrders();
     };
-    if (!localStorage.getItem("accessToken")) {
+    // if (!localStorage.getItem("accessToken")) {
+    //   router.push("/");
+    //   message.error("Та нэвтэрч орно уу!");
+    // }
+    const detail = localStorage.getItem("beauty_detail");
+
+    const initialData1 = detail === "undefined" ? null : detail;
+    var userDetail = initialData1 === null ? {} : JSON.parse(initialData1);
+    // console.log("beauty_detail", userDetail);
+    if (userDetail?.user?.status !== "0" && userDetail?.user?.status !== "1") {
       router.push("/");
-      message.error("Та нэвтэрч орно уу!");
+      message.error("Та админ эрхээр нэвтэрч орно уу!");
     }
     // console.log("useState");
     getUserAndOrder();

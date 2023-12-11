@@ -13,6 +13,7 @@ var initialData = {
   message: "",
   token: "",
   detail: {},
+  profileDetail: {},
   list: [],
   isInitialized: false,
   isAuthenticated: false,
@@ -100,7 +101,7 @@ const AuthProvider = (props) => {
   //  #    # # #    # #   ## # #   ##
   //   ####  #  ####  #    # # #    #
 
-  const signIn = async ({ email, password }) => {
+  const signIn = async ({ email, password, route }) => {
     // console.log(email, password);
     setState({
       ...state,
@@ -109,7 +110,7 @@ const AuthProvider = (props) => {
     });
 
     var config = {
-      url: "/users/login",
+      url: `${route}/login`,
       method: "post",
       data: {
         email: email,
@@ -143,6 +144,8 @@ const AuthProvider = (props) => {
       );
       if (data?.user?.status == 0) {
         router.push("/admin");
+      } else if (route == "/employee") {
+        router.push("/employee");
       } else {
         router.push("/services");
       }
@@ -396,6 +399,40 @@ const AuthProvider = (props) => {
       DeleteMess();
     }
   };
+  const getUser = async (id) => {
+    // console.log(email, password);
+    setState({
+      ...state,
+      status: "loading",
+      message: "loading",
+    });
+
+    var config = {
+      url: `users/${id}`,
+      method: "get",
+    };
+    LoadingFun();
+    try {
+      const response = await axios(config);
+      const { data } = response?.data;
+      var auth_detail = {
+        profileDetail: data,
+      };
+      setState({
+        ...state,
+        status: "success",
+        ...auth_detail,
+      });
+    } catch (err) {
+      setState({
+        ...state,
+        status: "error",
+        message: err?.message,
+      });
+      DeleteMess();
+      message.error(<div className="text-[20px]">{err?.message}</div>);
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -407,6 +444,7 @@ const AuthProvider = (props) => {
         CreateUser,
         UpdateUser,
         DeleteUser,
+        getUser,
       }}
     >
       {props.children}
