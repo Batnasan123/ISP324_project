@@ -4,6 +4,7 @@ import Banner from "../banner/index";
 import Aboutus from "../landing/aboutus";
 import Testimonials from "../landing/testimonials";
 import Artist from "../Artist/index";
+import Services from "../services/index";
 
 export default function Main() {
   return (
@@ -12,6 +13,7 @@ export default function Main() {
       <Features />
       <Aboutus />
       <Testimonials />
+      <Services />
       <Artist />
     </div>
   );
