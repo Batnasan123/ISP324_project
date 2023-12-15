@@ -33,6 +33,7 @@ import UpdateOrder from "../../components/admin/orders/updateOrder";
 const render = ({ data, events, tr }) => {
   // console.log("dataORder", data?.orderList);
   // const dataDetails = [...data?.room];
+  //
   const Data = [
     {
       id: 1,
