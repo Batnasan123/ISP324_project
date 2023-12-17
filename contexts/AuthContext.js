@@ -433,6 +433,79 @@ const AuthProvider = (props) => {
       message.error(<div className="text-[20px]">{err?.message}</div>);
     }
   };
+
+  const ForgotPass = async (email) => {
+    let body = { email };
+    var config = {
+      url: "users/forgotPassword",
+      method: "post",
+      data: {
+        ...body,
+      },
+    };
+    // console.log("$:/context/forgot-password ", config);
+    // message.loading()
+    LoadingFun();
+    try {
+      const response = await axios(config);
+      const { data } = response?.data;
+
+      setState({
+        ...state,
+        status: "success",
+      });
+      DeleteMess();
+      message.success(<div className="text-[20px]">reset_pass_sent</div>);
+      // message.success(config11);
+      router.push("/");
+    } catch (err) {
+      setState({
+        ...state,
+        status: "success",
+        message: err?.message,
+      });
+      DeleteMess();
+      message.error(<div className="text-[20px]">{err?.message}</div>);
+      // message.error(config12);
+    }
+  };
+  //
+  const ChangePass = async (password, resetToken) => {
+    let body = { password, resetToken };
+    var config = {
+      url: "/users/resetPassword",
+      method: "post",
+      data: {
+        ...body,
+      },
+    };
+    // console.log("$:/context/forgot-password ", config);
+
+    try {
+      console.log("config", config);
+      const response = await axios(config);
+      const { data } = response?.data;
+
+      setState({
+        ...state,
+        status: "success",
+      });
+      message.success(
+        <div className="text-[20px]">resetPass_submit_sendEmail_success"</div>
+      );
+
+      //message.success(config13);
+      router.push("/");
+    } catch (err) {
+      setState({
+        ...state,
+        status: "success",
+        message: err?.message,
+      });
+      // console.log(err?.message)
+      message.error(<div className="text-[20px]">{err?.message}</div>);
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -445,6 +518,8 @@ const AuthProvider = (props) => {
         UpdateUser,
         DeleteUser,
         getUser,
+        ForgotPass,
+        ChangePass,
       }}
     >
       {props.children}
