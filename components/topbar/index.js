@@ -53,7 +53,7 @@ const TopBar = () => {
     }
   };
   return (
-    <div className="w-full h-[90px] border-solid  .rounded-b-2xl shadow-lg bg-white flex .flex-wrap mr-2 justify-between items-center px-6 py-8">
+    <div className="w-full h-[90px] border-solid  .rounded-b-2xl shadow-lg bg-white flex .flex-wrap mr-2 justify-between items-center px-6 py-8 sticky top-0 z-30">
       <div className="flex">
         <a href="/" className="pr-4">
           <img
@@ -114,32 +114,32 @@ const TopBar = () => {
         <>
           <div
             onClick={closeBar}
-            className="fixed top-0 left-0 bg-black opacity-30 h-full w-full z-20"
+            className="fixed top-0 z-30 left-0 bg-black opacity-30 h-full w-full"
           />
           <div
-            className={`absolute top-0 left-0 bg-white p-4 h-full min-[964px]:hidden z-30 ${
+            className={`absolute top-24 left-0 bg-white .p-4 h-full min-[964px]:hidden z-40 ${
               isOpen ? "w-60" : "w-0"
             } transition-all duration-300 ease-in-out`}
           >
-            <div className="pt-10 font-semibold">
-              <a href="/" className="mr-3 hover:text-cyan-600  ">
+            <div className="pt-10 font-semibold bg-white">
+              <a href="/" className="px-4 hover:text-cyan-600  ">
                 HOME{" "}
               </a>
-              <a href="/about" className="mr-2 block pt-4 hover:text-cyan-600 ">
+              <a href="/about" className="px-4 block pt-4 hover:text-cyan-600 ">
                 ABOUT{" "}
               </a>
-              <a href="/pages" className="mr-2 pt-4 block hover:text-cyan-600 ">
+              <a href="/pages" className="px-4 pt-4 block hover:text-cyan-600 ">
                 PAGES{" "}
               </a>
               <a
                 href="/contactUs"
-                className="mr-2 pt-4 pb-4 block hover:text-cyan-600 "
+                className="px-4 pt-4 pb-4 block hover:text-cyan-600 "
               >
                 CONTACT US{" "}
               </a>
               <a
                 href="/auth/sign-in"
-                className=" .pt-4 pb-4 block hover:text-cyan-600 relative right-1 "
+                className="px-4 pb-4 block hover:text-cyan-600 relative right-1 "
               >
                 <button className="border-slate-500  rounded-xl border w-[150px] h-8  hover:text-cyan-600">
                   Make Reservation{" "}

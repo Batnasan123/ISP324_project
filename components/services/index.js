@@ -12,7 +12,7 @@ export default function Artist() {
     <div className="px-5 sm:px-[40px] pb-16 .mb-12 вbg-[#ebf3f5]">
       <div className="text-center pt-12 pb-6 sm:px-8">
         {/* <div className="text-[15px] text-gray-500">ҮЙЧИЛГЭЭ</div> */}
-        <div className="text-[40px] font-bold">ҮЙЛЧИЛГЭЭНҮҮД</div>
+        <div className="lg:text-[40px] text-lg font-bold">ҮЙЛЧИЛГЭЭНҮҮД</div>
       </div>
       <div>
         <div className="grid .place-items-center gap-3 font-Montserrat sm:grid-cols-2 md:grid-cols-3 .lg:grid-cols-4">

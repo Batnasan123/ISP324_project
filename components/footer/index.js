@@ -9,7 +9,7 @@ import {
 
 export default function Footer() {
   return (
-    <div className="grid grid-flow-row px-6 py-8 bg-[#1e2c30] text-white">
+    <div className="lg:grid lg:grid-flow-row px-6 py-8 bg-[#1e2c30] text-white">
       <div className="flex justify-evenly .justify-around mt-5 mb-10">
         {" "}
         <img
@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-wrap justify-evenly">
-        <div className="grid grid-flow-col auto-cols-auto gap-10">
+        <div className="grid lg:grid-flow-col grid-flow-row auto-cols-auto gap-3 lg:gap-10">
           <a className="hover:underline" href="/">
             HOME
           </a>
