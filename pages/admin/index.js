@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import useOrder from "../../hooks/useOrder";
 import useEmployee from "../../hooks/useEmployee";
 import useService from "../../hooks/useService";
+import useReport from "../../hooks/useReport";
 
 // design components
 import MainLayout from "../../layouts/main";
@@ -29,7 +30,9 @@ import UpdateService from "../../components/admin/service/updateService";
 import OrderMenu from "../../components/admin/orders/orderMenu";
 import CreateOrder from "../../components/admin/orders/createOrder";
 import UpdateOrder from "../../components/admin/orders/updateOrder";
-
+// REPORT
+import AttendanceMenu from "../../components/admin/report/attendanceMenu";
+// import OrlogoMenu from "../../components/admin/report/orlogoMenu";
 const render = ({ data, events, tr }) => {
   // console.log("dataORder", data?.orderList);
   // const dataDetails = [...data?.room];
@@ -55,6 +58,16 @@ const render = ({ data, events, tr }) => {
       title: "Захиалга",
       children: <OrderMenu data={data} events={events} />,
     },
+    {
+      id: 4,
+      title: "Тайлан",
+      children: <AttendanceMenu data={data} events={events} />,
+    },
+    // {
+    //   id: 4,
+    //   title: "Орлого",
+    //   children: <OrlogoMenu data={data} events={events} />,
+    // },
   ];
   return (
     <div className="min-h-screen min-[350px]:px-6">
@@ -103,6 +116,7 @@ function Presentation() {
   const order = useOrder();
   const employee = useEmployee();
   const service = useService();
+  const report = useReport();
 
   useEffect(() => {
     const getUserAndOrder = async () => {
@@ -110,6 +124,14 @@ function Presentation() {
       await employee.loadAllEmployees();
       await service.loadAllServices();
       await order.getAllOrders();
+      const dateRange = {
+        startDate: "2023/11/01",
+        endDate: "2023/12/20",
+      };
+      await report.getTotalIncome(dateRange);
+      // await report.getEmployeeIncome();
+      // await report.getServiceIncome();
+      await report.getAttendance();
     };
     // if (!localStorage.getItem("accessToken")) {
     //   router.push("/");
@@ -317,7 +339,7 @@ function Presentation() {
       value?.userId,
       value?.serviceId,
       value?.employeeId,
-      value?.date.format("YYYY/MM/DD"),
+      value?.ognoo.format("YYYY/MM/DD"),
       value?.time.format("HH:00")
     );
     setMainForm({
@@ -328,7 +350,7 @@ function Presentation() {
   const handleUpdateOrder = async (value) => {
     await order.UpdateOrder(
       value?.id,
-      value?.date.format("YYYY/MM/DD"),
+      value?.ognoo.format("YYYY/MM/DD"),
       value?.time.format("HH:00")
     );
     setMainForm({
@@ -367,6 +389,9 @@ function Presentation() {
     });
     service.loadAllServices();
   };
+  const getTotalIncome = async (value) => {
+    await report.getTotalIncome(value);
+  };
   return (
     <React.Fragment>
       <h1
@@ -382,6 +407,7 @@ function Presentation() {
       {employee?.contextHolder}
       {order?.contextHolder}
       {service?.contextHolder}
+      {report?.contextHolder}
       <DataDisplayer
         // error={user?.state?.message}
         status={"success"}
@@ -391,6 +417,8 @@ function Presentation() {
           orderList: order?.state?.list,
           employeeList: employee?.state?.list,
           serviceList: service?.state?.list,
+          reportList: report?.state,
+          orlogo: report?.state2,
           form: mainForm,
         }}
         render={render}
@@ -414,6 +442,7 @@ function Presentation() {
           handleCreateOrder: handleCreateOrder,
           handleDeleteOrder: handleDeleteOrder,
           handleUpdateOrder: handleUpdateOrder,
+          getTotalIncome: getTotalIncome,
         }}
       />
     </React.Fragment>

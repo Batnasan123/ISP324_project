@@ -8,7 +8,7 @@ const serviceForm = ({ data, events }) => {
       serviceId: null,
       userId: null,
       time: null,
-      date: null,
+      ognoo: null,
       employeeId: initialData?.employee?.id,
     });
   }, [data?.id]);
@@ -90,7 +90,7 @@ const serviceForm = ({ data, events }) => {
         </Form.Item>
         <Form.Item
           label="Огноо нэр сонгох"
-          name="date"
+          name="ognoo"
           rules={[
             {
               required: true,

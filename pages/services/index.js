@@ -102,7 +102,7 @@ function Presentation() {
       values?.userId,
       values?.serviceId,
       values?.employeeId,
-      values?.date.format("YYYY/MM/DD"),
+      values?.ognoo.format("YYYY/MM/DD"),
       values?.time.format("HH:00")
     );
     // console.log("handleOnFinish", values?.date.format("YYYY/MM/DD"));

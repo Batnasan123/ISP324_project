@@ -115,7 +115,7 @@ export default function Agenda({ data, events }) {
       serviceId: checkServiceId(item?.serviceId),
       employeeId: checkEmployeeId(item?.employeeId),
       time: item?.time,
-      date: item?.date,
+      date: item?.ognoo,
       updatedAt: item?.updatedAt,
       delete: (
         <Button
@@ -124,7 +124,7 @@ export default function Agenda({ data, events }) {
               header: "Захиалга устгах",
               formType: "deleteOrderForm",
               message:
-                item?.date +
+                item?.ognoo +
                 "огноотой " +
                 item?.time +
                 " цагтай " +
@@ -150,7 +150,7 @@ export default function Agenda({ data, events }) {
               form: "put",
               data: {
                 id: item?.id,
-                date: item?.date,
+                date: item?.ognoo,
                 time: item?.time,
               },
             })

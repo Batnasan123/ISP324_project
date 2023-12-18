@@ -160,7 +160,7 @@ function Presentation() {
       value?.userId,
       value?.serviceId,
       value?.employeeId,
-      value?.date.format("YYYY/MM/DD"),
+      value?.ognoo.format("YYYY/MM/DD"),
       value?.time.format("HH:00")
     );
     setMainForm({
@@ -171,7 +171,7 @@ function Presentation() {
   const handleUpdateOrder = async (value) => {
     await order.UpdateOrder(
       value?.id,
-      value?.date.format("YYYY/MM/DD"),
+      value?.ognoo.format("YYYY/MM/DD"),
       value?.time.format("HH:00")
     );
     setMainForm({

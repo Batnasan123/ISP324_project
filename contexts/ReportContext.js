@@ -3,14 +3,18 @@ import axios from "../utils/axios";
 import { useRouter } from "next/router";
 import { message } from "antd";
 
-const OrderContext = createContext();
+const ReportContext = createContext();
 
 const initialState = {
   status: "",
   message: "",
   modal: false,
   detail: {},
+  orlogo: "",
   list: [],
+  list2: [],
+  list3: [],
+  list4: [],
 };
 message.config({
   top: 100,
@@ -20,8 +24,9 @@ message.config({
   prefixCls: "my-message",
   style: "fontSize:20px",
 });
-const OrderProvider = (props) => {
+const ReportProvider = (props) => {
   const [state, setState] = useState(initialState);
+  const [state2, setState2] = useState(null);
   const router = useRouter();
 
   const [messageApi, contextHolder] = message.useMessage();
@@ -36,7 +41,10 @@ const OrderProvider = (props) => {
     };
     message.loading(<div className="text-[20px]">message_loading</div>);
   };
-  const createOrder = async (userId, serviceId, employeeId, ognoo, time) => {
+
+  const getTotalIncome = async ({ startDate, endDate }) => {
+    // console.log("worked");
+    let body = { startDate, endDate };
     setState({
       ...state,
       status: "loading",
@@ -44,174 +52,42 @@ const OrderProvider = (props) => {
     });
 
     var config = {
-      url: "/orders",
+      url: "/report/getTotalIncome",
       method: "post",
-      data: {
-        userId: userId,
-        serviceId: serviceId,
-        employeeId: employeeId,
-        ognoo: ognoo,
-        time: time,
-      },
-    };
-    try {
-      console.log("config", config);
-      var response = await axios(config);
-      // console.log("response", response);
-      const { data } = response.data;
-      // console.log("data", data);
-      setState({
-        ...state,
-        status: "success",
-        // list: data,
-        message: "",
-      });
-      message.success(
-        <div className="text-[20px]">Та амжилттай захиалга хийлээ.</div>
-      );
-    } catch (err) {
-      console.log("err", err);
-      if (err?.statusCode === 409) {
-        // router.push("/");
-      }
-
-      setState({
-        ...state,
-        status: "error",
-        message: err.message || "Something went wrong!",
-      });
-      DeleteMess();
-      message.error(<div className="text-[20px]">{err?.message}</div>);
-    }
-  };
-
-  const getAllOrders = async () => {
-    // console.log("worked");
-    setState({
-      ...state,
-      status: "loading",
-      message: "",
-    });
-
-    var config = {
-      url: "/orders",
-      method: "get",
-      data: {},
-    };
-
-    try {
-      var response = await axios(config);
-      //   console.log("response", response);
-      const { data } = response;
-      // console.log("data orders", data);
-      setState({
-        ...state,
-        status: "success",
-        list: data,
-        message: "",
-      });
-      // }
-    } catch (err) {
-      console.log("err", err);
-      if (err?.statusCode === 409) {
-        router.push("/");
-      }
-
-      setState({
-        ...state,
-        status: "error",
-        message: err.message || "Something went wrong!",
-      });
-    }
-  };
-
-  const getEmployeeOrders = async (employeeId) => {
-    // console.log("worked");
-    setState({
-      ...state,
-      status: "loading",
-      message: "",
-    });
-
-    var config = {
-      url: `/orders/getOrdersByEmployeeId/${employeeId}`,
-      method: "get",
-      data: {},
-    };
-
-    try {
-      var response = await axios(config);
-      //   console.log("response", response);
-      const { data } = response;
-      // console.log("data orders", data);
-      setState({
-        ...state,
-        status: "success",
-        list: data,
-        message: "",
-      });
-      // }
-    } catch (err) {
-      console.log("err", err);
-      if (err?.statusCode === 409) {
-        router.push("/");
-      }
-
-      setState({
-        ...state,
-        status: "error",
-        message: err.message || "Something went wrong!",
-      });
-    }
-  };
-
-  const UpdateOrder = async (id, ognoo, time) => {
-    // let body = { value };
-    let body = { ognoo, time };
-    // console.log("body", body);
-    setState({
-      ...state,
-      status: "loading",
-      message: "",
-    });
-    // console.log(body);
-
-    var config = {
-      url: `/orders/${id}`,
-      method: "put",
       data: {
         ...body,
       },
     };
-    // console.log(config);
-    LoadingFun();
+    // console.log("config", config);
     try {
       var response = await axios(config);
-      const { data } = response.data;
-      setState({
-        ...state,
-        status: "success",
-      });
-      message.success("Захиалга амжилттай шинэчлэлээ");
-      // CompanyBydetails(companyId)
-      // console.log('2222')
+      //   console.log("response", response);
+      const { data } = response;
+      console.log("orlogo", data);
+      // setState({
+      //   ...state,
+      //   status: "success",
+      //   list: data,
+      //   message: "",
+      // });
+      setState2(data);
+      // }
     } catch (err) {
-      console.log(err);
+      console.log("err", err);
+      if (err?.statusCode === 409) {
+        router.push("/");
+      }
+
       setState({
         ...state,
         status: "error",
         message: err.message || "Something went wrong!",
       });
-      if (
-        err?.message == "Your [1] permission has been denied to do this action"
-      ) {
-        message.error("Энэ үйлдлийг хийхэд таны эрх хүрэхгүй байна.", 2);
-      } else message.error(err?.message);
-      DeleteMess();
     }
   };
 
-  const DeleteOrder = async (value) => {
+  const getEmployeeIncome = async (employeeId) => {
+    // console.log("worked");
     setState({
       ...state,
       status: "loading",
@@ -219,52 +95,131 @@ const OrderProvider = (props) => {
     });
 
     var config = {
-      url: `/orders/${value}`,
-      method: "delete",
-      // data: {
-      //   ...body,
-      // },
+      url: `/report/getEmployeeIncome/${employeeId}`,
+      method: "get",
+      data: {},
     };
-    LoadingFun();
+
     try {
       var response = await axios(config);
-      const { data } = response.data;
+      //   console.log("response", response);
+      const { data } = response;
+      // console.log("data orders", data);
       setState({
         ...state,
         status: "success",
+        list2: data,
+        message: "",
       });
-      message.success("Захиалга амжилттай устлаа");
-      // success();
+      // }
     } catch (err) {
-      console.log(err);
+      console.log("err", err);
+      if (err?.statusCode === 409) {
+        router.push("/");
+      }
+
       setState({
         ...state,
         status: "error",
         message: err.message || "Something went wrong!",
       });
-      if (
-        err?.message == "Your [1] permission has been denied to do this action"
-      ) {
-        message.error("Энэ үйлдлийг хийхэд таны эрх хүрэхгүй байна.", 2);
-      } else message.error(err?.message);
-      DeleteMess();
     }
   };
+  const getServiceIncome = async (serviceId) => {
+    // console.log("worked");
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+
+    var config = {
+      url: `/report/getServiceIncome/${serviceId}`,
+      method: "get",
+      data: {},
+    };
+
+    try {
+      var response = await axios(config);
+      //   console.log("response", response);
+      const { data } = response;
+      // console.log("data orders", data);
+      setState({
+        ...state,
+        status: "success",
+        list3: data,
+        message: "",
+      });
+      // }
+    } catch (err) {
+      console.log("err", err);
+      if (err?.statusCode === 409) {
+        router.push("/");
+      }
+
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+    }
+  };
+
+  const getAttendance = async () => {
+    // console.log("worked");
+    setState({
+      ...state,
+      status: "loading",
+      message: "",
+    });
+
+    var config = {
+      url: "/report/getAttendance",
+      method: "get",
+      data: {},
+    };
+
+    try {
+      var response = await axios(config);
+      //   console.log("response", response);
+      const { data } = response;
+      // console.log("data orders", data);
+      setState({
+        ...state,
+        status: "success",
+        list4: data,
+        message: "",
+      });
+      // }
+    } catch (err) {
+      console.log("err", err);
+      if (err?.statusCode === 409) {
+        router.push("/");
+      }
+
+      setState({
+        ...state,
+        status: "error",
+        message: err.message || "Something went wrong!",
+      });
+    }
+  };
+
   return (
-    <OrderContext.Provider
+    <ReportContext.Provider
       value={{
         state,
+        state2,
         contextHolder,
-        createOrder,
-        getAllOrders,
-        getEmployeeOrders,
-        UpdateOrder,
-        DeleteOrder,
+        getTotalIncome,
+        getEmployeeIncome,
+        getServiceIncome,
+        getAttendance,
       }}
     >
       {props.children}
-    </OrderContext.Provider>
+    </ReportContext.Provider>
   );
 };
 
-export { OrderContext, OrderProvider };
+export { ReportContext, ReportProvider };

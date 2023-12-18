@@ -18,7 +18,7 @@ const serviceForm = ({ data, events }) => {
   useEffect(() => {
     form.setFieldsValue({
       id: data?.form?.data?.id,
-      date: "",
+      ognoo: "",
       time: "",
     });
   }, []);
@@ -52,7 +52,7 @@ const serviceForm = ({ data, events }) => {
         </Form.Item>
         <Form.Item
           label="Огноо нэр сонгох"
-          name="date"
+          name="ognoo"
           rules={[
             {
               required: true,
