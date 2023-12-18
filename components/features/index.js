@@ -11,14 +11,14 @@ export default function Features() {
             className="w-full"
             src="https://uploads-ssl.webflow.com/6135e5f06048e4e83fb2c8ab/618f41ba892f5bd8b50b7eaa_feature-image-one.jpg"
           ></img>
-          <h2 className="mt-[17px] text-[26px] leading-6">Spa &amp; Massage</h2>
+          <h2 className="mt-[17px] text-[26px] leading-6">Спа &amp; Бариа</h2>
           <div className="feature-content">
             Your wellness goals and the areas of preference, then unwind with a
             customized massage experience.
           </div>
           <a href="#" className="">
-            <Button className="bg-transparent w-[130px] h-[57px] text-black text-lg border-2 rounded-none border-gray-500">
-              Read more
+            <Button className="bg-transparent w-[150px] h-[57px] text-black text-lg border-2 rounded-none border-gray-500">
+              Илүү мэдээлэл
             </Button>
           </a>
         </div>
@@ -28,14 +28,16 @@ export default function Features() {
             className="w-full"
             src="https://uploads-ssl.webflow.com/6135e5f06048e4e83fb2c8ab/618f41ba7ca5fbc636637c4a_feature-image-three.jpg"
           ></img>
-          <h2 className="mt-[17px] text-[26px] leading-6">Hair &amp; Beauty</h2>
+          <h2 className="mt-[17px] text-[26px] leading-6">
+            Үс &amp; Гоо сайхан
+          </h2>
           <div className="feature-content">
             Combining skin-type-specific cleansing & toning, exfoliation,
             deep-pore cleansing extractions customized treatment.
           </div>
           <a href="#" className="">
-            <Button className="bg-transparent w-[130px] h-[57px] text-black text-lg border-2 rounded-none border-gray-500">
-              Read more
+            <Button className="bg-transparent w-[150px] h-[57px] text-black text-lg border-2 rounded-none border-gray-500">
+              Илүү мэдээлэл
             </Button>
           </a>
         </div>
@@ -45,14 +47,14 @@ export default function Features() {
             className="w-full"
             src="https://uploads-ssl.webflow.com/6135e5f06048e4e83fb2c8ab/618f41bad6736d6be7bd40e3_feature-image-two.jpg"
           ></img>
-          <h2 className="mt-[17px] text-[26px] leading-6">Body Treatments</h2>
+          <h2 className="mt-[17px] text-[26px] leading-6">Биеийн эмчилгээ</h2>
           <div className="feature-content">
             Offers therapeutic benefits such as relief of muscle tension and
             increased circulation to the areas worked.
           </div>
           <a href="#" className="">
-            <Button className="bg-transparent w-[130px] h-[57px] text-black text-lg border-2 rounded-none border-gray-500">
-              Read more
+            <Button className="bg-transparent w-[150px] h-[57px] text-black text-lg border-2 rounded-none border-gray-500">
+              Илүү мэдээлэл
             </Button>
           </a>
         </div>

@@ -5,8 +5,10 @@ export default function Testimonials() {
   return (
     <div className="grid grid-flow-row auto-rows-auto mb-12">
       <div className="text-center pt-12 pb-6 sm:px-8">
-        <div className="text-[15px] text-gray-500">TESTIMONIALS</div>
-        <div className="text-[40px] font-bold">What our Customers says...</div>
+        <div className="text-[15px] text-gray-500">ГЭРЧЛЭЛ</div>
+        <div className="text-[40px] font-bold">
+          Манай үйлчлүүлэгчдийн сэтгэгдэл:
+        </div>
       </div>
       <div className="grid lg:grid-cols-2 sm:px-8 gap-12">
         <div className="grid grid-flow-row auto-rows-auto border-2">

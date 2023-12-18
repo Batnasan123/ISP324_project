@@ -85,20 +85,20 @@ const TopBar = () => {
       </div>
       <div className=".flex max-[860px]:hidden  font-semibold inline-flex align-middle">
         <a href="/" className="mr-3 hover:text-cyan-600 mt-2">
-          Home{" "}
+          Нүүр{" "}
         </a>
         <a href="/about" className="mr-3 hover:text-cyan-600  mt-2">
-          About{" "}
+          Бидний тухай{" "}
         </a>
-        <a href="/pages" className="mr-3 hover:text-cyan-600  mt-2">
-          Pages{" "}
+        <a href="/services" className="mr-3 hover:text-cyan-600  mt-2">
+          Үйлчилгээ{" "}
         </a>
-        <a href="/contactUs" className="mr-3 hover:text-cyan-600 mt-2">
-          Contact Us{" "}
+        <a href="#footer" className="mr-3 hover:text-cyan-600 mt-2">
+          Холбоо барих{" "}
         </a>
         <a href="/auth/sign-in" className="">
           <Button className="bg-[#5c8692] .w-[230px] min-h-[40px] text-white text-[16px] font-semibold border-2 rounded-none border-[#5c8692]">
-            MAKE A RESERVATION
+            Захиалга хийх
           </Button>
         </a>
         {checkAuth()}
@@ -142,7 +142,7 @@ const TopBar = () => {
                 className="px-4 pb-4 block hover:text-cyan-600 relative right-1 "
               >
                 <button className="border-slate-500  rounded-xl border w-[150px] h-8  hover:text-cyan-600">
-                  Make Reservation{" "}
+                  Захиалга хийх{" "}
                 </button>
               </a>
               {checkAuth()}

@@ -9,7 +9,10 @@ import {
 
 export default function Footer() {
   return (
-    <div className="lg:grid lg:grid-flow-row px-6 py-8 bg-[#1e2c30] text-white">
+    <div
+      id="footer"
+      className="lg:grid lg:grid-flow-row px-6 py-8 bg-[#1e2c30] text-white"
+    >
       <div className="flex justify-evenly .justify-around mt-5 mb-10">
         {" "}
         <img
@@ -41,23 +44,23 @@ export default function Footer() {
       <div className="flex flex-wrap justify-evenly">
         <div className="grid lg:grid-flow-col grid-flow-row auto-cols-auto gap-3 lg:gap-10">
           <a className="hover:underline" href="/">
-            HOME
+            Нүүр
           </a>
           <a className="hover:underline" href="/about">
-            ABOUT
+            Бидний тухай
           </a>
-          <a className="hover:underline" href="/pages">
-            PAGES
+          <a className="hover:underline" href="/services">
+            Үйлчилгээ
           </a>
           <a className="hover:underline" href="/contactUs">
-            CONTACT US
+            Холбоо барих
           </a>
           <a className="hover:underline" href="/auth/sign-in">
-            MAKE RESERVATION
+            Захиалга хийх
           </a>
         </div>
-        <div>ADDRESS: UFE, Ulaanbaatar, Mongolia</div>
-        <div>PHONE: 95802438</div>
+        <div>Хаяг: UFE, Ulaanbaatar, Mongolia</div>
+        <div>Утас: 95802438</div>
         {/* <ul>
           <li>Explore</li>
           <li>Home</li>

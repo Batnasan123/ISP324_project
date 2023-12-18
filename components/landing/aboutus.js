@@ -6,9 +6,7 @@ export default function Aboutus() {
     <div className="grid sm:grid-cols-2 gap-6 px-5 sm:px-[40px] py-12 bg-[#ebf3f5]">
       <div className="grid grid-flow-row auto-rows-auto">
         <h1 className="text-[15px] text-gray-500">TAKE YOUR CARE</h1>
-        <h1 className="text-[45px]">
-          Elevate Your Lifestyle by Bring Balance and Well Being Into Your Life
-        </h1>
+        <h1 className="text-[45px]">Гоо сайхан таны тав тухаас эхэлдэг!</h1>
         <div>
           Designed to allow you to unwind and feel confident that you’re in
           good, caring hands. Our first priority is cleanliness. We have a
@@ -25,8 +23,8 @@ export default function Aboutus() {
               src="https://assets-global.website-files.com/6135e5f06048e4e83fb2c8ab/618f473e1e3bd92a8bb6ece4_about-icon-one.svg"
             />
             <h3 className="sm:text-[22px] font-semibold">
-              Beauty <br />
-              Experts
+              Гоо сайханы <br />
+              Мэдлэг
             </h3>
           </div>
           <div
@@ -38,8 +36,9 @@ export default function Aboutus() {
               src="https://assets-global.website-files.com/6135e5f06048e4e83fb2c8ab/618f473e7ca5fb6466638b30_about-icon-two.svg"
             />
             <h3 className="sm:text-[22px] font-semibold">
-              Beauty <br />
-              Experts
+              Гайхамшигт
+              <br />
+              Үйлчилгээ
             </h3>
           </div>
           <div
@@ -51,8 +50,8 @@ export default function Aboutus() {
               src="https://assets-global.website-files.com/6135e5f06048e4e83fb2c8ab/618f473ecd54744a3d6292ba_about-icon-three.svg"
             />
             <h3 className="sm:text-[22px] font-semibold">
-              Beauty <br />
-              Experts
+              100% <br />
+              Найдвартай
             </h3>
           </div>
         </div>

@@ -15,16 +15,16 @@ export default function Banner() {
             <div className="">Welcome to Beautyness!!!</div>
           </div>
           <h1 className="my-[5px] text-[53px] text-[#141414]">
-            Bring The well being & beauty naturally!!!
+            Гоо сайхан бол хүч чадвар юм.
           </h1>
           <div className="hero-content">
-            Your body does a lot for you, and your caring therapist can help you
+            {/* Your body does a lot for you, and your caring therapist can help you
             return the favor in a way that benefits both your physical and
-            mental wellness.
+            mental wellness. */}
           </div>
           <a href="#" className="">
             <Button className="bg-[#5c8692] w-[230px] h-[56px] text-white text-[16px] font-semibold border-2 rounded-none border-[#5c8692]">
-              MAKE A RESERVATION
+              Захиалга хийх
             </Button>
           </a>
         </div>
