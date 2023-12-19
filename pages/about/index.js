@@ -9,18 +9,15 @@ export default function About() {
           <div className="testimonials">
             <div className="content">
               <div className="title">
-                <div className="text-wrapper">TESTIMONIALS</div>
-                <div className="div">What our Customers say...</div>
+                <div className="text-wrapper">Мэдээлэл</div>
+                <div className="div">Үйлчлүүлэгчдийн сэтгэгдэл...</div>
               </div>
               <div className="testimonial">
                 <div className="element">
                   <div className="div-wrapper">
                     <div className="text">
                       <p className="p">
-                        “ It is a long established fact that a reader will be
-                        tracked distracted by the readable content of a page is
-                        when looking at its layout. The point of using Lorem of
-                        distribution it look like readable English “
+                        “ Текст “
                       </p>
                     </div>
                   </div>
@@ -38,8 +35,8 @@ export default function About() {
                             alt="Reviews"
                             src="./img/reviews-1.svg"
                           />
-                          <div className="text-wrapper-2">James Williams</div>
-                          <div className="text-wrapper-3">United States</div>
+                          <div className="text-wrapper-2">А. Ану</div>
+                          <div className="text-wrapper-3"></div>
                         </div>
                       </div>
                       <img className="icon" alt="Icon" src="./img/icon-3.png" />
@@ -50,10 +47,7 @@ export default function About() {
                   <div className="div-wrapper">
                     <div className="text">
                       <p className="p">
-                        “ It is a long established fact that a reader will be
-                        tracked distracted by the readable content of a page is
-                        when looking at its layout. The point of using Lorem of
-                        distribution it look like readable English “
+                        “ Текст “
                       </p>
                     </div>
                   </div>
@@ -67,8 +61,8 @@ export default function About() {
                         />
                         <div className="name">
                           <img className="reviews" src="./img/reviews.svg"/>
-                          <div className="text-wrapper-2">Lieo Jessica</div>
-                          <div className="text-wrapper-3">United Kingdom</div>
+                          <div className="text-wrapper-2">Ж. Маралмаа</div>
+                          <div className="text-wrapper-3"></div>
                         </div>
                       </div>
                       <img className="icon" alt="Icon" src="./img/icon-3.png" />
@@ -95,14 +89,12 @@ export default function About() {
                       
                         <div className="title">
                           <div className="div">
-                            <div className="about-us">ABOUT US</div>
-                            <div className="style-is-a">Style is a Reflection of your 
-                            Attitude &amp; your Personality</div>
+                            <div className="about-us">БИДНИЙ ТУХАЙ</div>
+                            <div className="style-is-a">Таны өөртөө итгэх итгэл,
+                            Гоо сайхан, &amp; Эрхэмсэг байдлын илэрхийлэл</div>
                           </div>
                           <p className="there-are-many">
-                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
-                            some form, buying to injected humour, or randomised words which don&#39;t look even many desktop publishing
-                            packages.
+                            Текст
                           </p>
                         </div>
                     
@@ -113,9 +105,9 @@ export default function About() {
 
                 <div className="our-team-2">
                   <div className="title-2">
-                    <div className="text-wrapper">MEET OUR EXPERTS</div>
+                    <div className="text-wrapper">Манай мэргэжилийн артистууд</div>
                     <p className="text-wrapper-4">
-                      The amazing women behind Beautyness
+                      Туршлагатай, мэргэжилийн өндөр түвшний артистууд.
                     </p>
                   </div>
                   <div className="content-2">
@@ -123,15 +115,14 @@ export default function About() {
                       <img className="img" alt="Image" src="./img/image-3.png" />
                       <div className="content-3">
                         <div className="name-2">
-                          <div className="text-wrapper-5">Sherlin D’Cruz</div>
+                          <div className="text-wrapper-5">Артист 1</div>
                           <div className="beautyness-expert">
-                            BEAUTYNESS EXPERT
+                          Гоо сайханы мэргэжилтэн
                           </div>
                         </div>
                         <div className="content-4">
                           <p className="text-wrapper-6">
-                            I must explain to you how all this mistaken idea of
-                            denouncing pleasure that will araise praising pain
+                          Текст
                           </p>
                           <div className="icon-2">
                             <div className="text-wrapper-7"></div>
@@ -145,15 +136,14 @@ export default function About() {
                       <img className="img" alt="Image" src="./img/image-2.png" />
                       <div className="content-3">
                         <div className="name-2">
-                          <div className="text-wrapper-5">Maria Sharapova</div>
+                          <div className="text-wrapper-5">Артист 2</div>
                           <div className="beautyness-expert">
-                            BEAUTYNESS EXPERT
+                            Гоо сайханы мэргэжилтэн
                           </div>
                         </div>
                         <div className="content-4">
                           <p className="text-wrapper-6">
-                            I must explain to you how all this mistaken idea of
-                            denouncing pleasure that will araise praising pain
+                          Текст
                           </p>
                           <div className="icon-2">
                             <div className="text-wrapper-7"></div>
@@ -167,15 +157,14 @@ export default function About() {
                       <img className="img" alt="Image" src="./img/image-1.png" />
                       <div className="content-3">
                         <div className="name-2">
-                          <div className="text-wrapper-5">Angeline Jenifer</div>
+                          <div className="text-wrapper-5">Артист 3</div>
                           <div className="beautyness-expert">
-                            BEAUTYNESS EXPERT
+                            Гоо сайхны мэргэжилтэн
                           </div>
                         </div>
                         <div className="content-4">
                           <p className="text-wrapper-6">
-                            I must explain to you how all this mistaken idea of
-                            denouncing pleasure that will araise praising pain
+                          Текст
                           </p>
                           <div className="icon-2">
                             <div className="text-wrapper-7"></div>
@@ -195,9 +184,9 @@ export default function About() {
                 <div className="background-2" />
                 <div className="content-5">
                   <div className="title-2">
-                    <div className="text-wrapper">OUR VALUES</div>
+                    <div className="text-wrapper">Бидний үнэ цэнэ</div>
                     <p className="text-wrapper-4">
-                      The work values we thrive for
+                      Бидний зорилго бол чанар
                     </p>
                   </div>
                   <div className="content-6">
@@ -210,11 +199,9 @@ export default function About() {
                         />
                       </div>
                       <div className="content-7">
-                        <div className="text-wrapper-8">Beauty Experts</div>
+                        <div className="text-wrapper-8">Гоо сайхны мэргэжилтэнгүүд</div>
                         <p className="text-wrapper-9">
-                          The majority have suffered alteration in some form,
-                          buying to injected humour, or randomised words which
-                          desktop publishing packages.
+                        Текст
                         </p>
                       </div>
                     </div>
@@ -228,11 +215,9 @@ export default function About() {
                         />
                       </div>
                       <div className="content-7">
-                        <div className="text-wrapper-8">Great Services</div>
+                        <div className="text-wrapper-8">Сэтгэл ханамжийн баталгаа</div>
                         <p className="text-wrapper-10">
-                          The majority have suffered alteration in some form,
-                          buying to injected humour, or randomised words which
-                          desktop publishing packages.
+                        Текст
                         </p>
                       </div>
                     </div>
@@ -246,11 +231,9 @@ export default function About() {
                         />
                       </div>
                       <div className="content-7">
-                        <div className="text-wrapper-8">100% Genuine</div>
+                        <div className="text-wrapper-8">100% бодит үр дүн</div>
                         <p className="text-wrapper-9">
-                          The majority have suffered alteration in some form,
-                          buying to injected humour, or randomised words which
-                          desktop publishing packages.
+                          Текст
                         </p>
                       </div>
                     </div>
@@ -267,14 +250,14 @@ export default function About() {
               <div className="grid grid-cols-1">
                 <div className="pr-[100px] max-[990px]:mb-12 inline-block align-middle">
                   <div className="text-center items-center">
-                    <div className="">SHORT STORY ABOUT US</div>
+                    <div className="">БИДНИЙ ТУХАЙ</div>
                   </div>
                   <h1 className="my-[5px] text-[53px] text-[#141414] text-center"> 
-                    The big story behind, our beautyness center
+                    Манай байгууллагын зорилго
                   </h1>
-                  <a href="#" className="flex justify-center">
+                  <a href="auth/sign-in" className="flex justify-center">
                     <Button className="bg-[#5c8692] w-[230px] h-[56px] text-white text-[16px] font-semibold border-2 rounded-none border-[#5c8692]">
-                      MAKE A RESERVATION
+                      ЗАХИАЛГА АВАХ
                     </Button>
                   </a>
                 </div>
