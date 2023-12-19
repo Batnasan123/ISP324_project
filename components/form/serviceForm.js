@@ -36,6 +36,7 @@ const serviceForm = ({ data, employee_list, events }) => {
   employee_list.map((item, index) => {
     employeeList.push({ value: item?.id, label: item?.firstName });
   });
+  const today = moment();
   return (
     <div>
       <div className="text-[18px] font-semibold ">
@@ -79,7 +80,12 @@ const serviceForm = ({ data, employee_list, events }) => {
             },
           ]}
         >
-          <DatePicker format={dateFormat} />
+          <DatePicker
+            format={dateFormat}
+            disabledDate={(current) =>
+              current && current < today.startOf("day")
+            }
+          />
         </Form.Item>
         <Form.Item
           label="Цаг сонгох"

@@ -22,40 +22,43 @@ export default function Artist() {
           {employee?.state?.list.length > 0 &&
             employee?.state?.list.map((item, index) => {
               return (
-                <Card
-                  // onClick={() => events.onClick({ id: data.id, logo: data.logo })}
-                  key={index}
-                  // onClick={service_clicked}
-                  hoverable
-                  className=".w-full .min-h-[150px]  .border .border-[#0F285F] .border-opacity-30 "
-                  style={cardStyle}
-                  size="small"
-                >
-                  <div className=".min-h-[120px] w-full grid grid-flow-row auto-rows-max">
-                    <div>
-                      <img
-                        className=".max-w-[300px]"
-                        src="https://assets-global.website-files.com/61558d52bbfeb85ec85163bd/6156d8f341101872f9fbd0e0_expert-small-image-1-p-500.jpeg"
-                      />
+                <a href="/services" target={"_blank"}>
+                  <Card
+                    // onClick={() => events.onClick({ id: data.id, logo: data.logo })}
+                    key={index}
+                    // onClick={service_clicked}
+                    hoverable
+                    className=".w-full .min-h-[150px]  .border .border-[#0F285F] .border-opacity-30 "
+                    style={cardStyle}
+                    size="small"
+                  >
+                    <div className=".min-h-[120px] w-full grid grid-flow-row auto-rows-max">
+                      <div>
+                        <img
+                          className=".max-w-[300px]"
+                          src="https://assets-global.website-files.com/61558d52bbfeb85ec85163bd/6156d8f341101872f9fbd0e0_expert-small-image-1-p-500.jpeg"
+                        />
+                      </div>
+                      <div className="mb-5 h-auto px-4 .bg-[#ebf3f5] text-left text-[18px] .font-bold">
+                        <div className=".font-bold">
+                          Овог:{" "}
+                          <span className="font-bold">{item?.lastName}</span>
+                        </div>
+                        <div className=".font-bold">
+                          Нэр:{" "}
+                          <span className="font-bold">{item?.firstName}</span>
+                        </div>
+                        <div className=".text-[12px] mt-1">
+                          И-майл:{" "}
+                          <span className="font-bold">{item?.email}</span>
+                        </div>
+                        <div className=".text-[12px] mt-1">
+                          Утас: <span className="font-bold">{item?.phone}</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="mb-5 h-auto px-4 .bg-[#ebf3f5] text-left text-[18px] .font-bold">
-                      <div className=".font-bold">
-                        Овог:{" "}
-                        <span className="font-bold">{item?.lastName}</span>
-                      </div>
-                      <div className=".font-bold">
-                        Нэр:{" "}
-                        <span className="font-bold">{item?.firstName}</span>
-                      </div>
-                      <div className=".text-[12px] mt-1">
-                        И-майл: <span className="font-bold">{item?.email}</span>
-                      </div>
-                      <div className=".text-[12px] mt-1">
-                        Утас: <span className="font-bold">{item?.phone}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
+                  </Card>
+                </a>
               );
             })}
         </div>

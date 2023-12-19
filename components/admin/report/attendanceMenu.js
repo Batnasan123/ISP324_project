@@ -1,6 +1,8 @@
 import React from "react";
 import { Table, Button } from "antd";
 import OrlogoForm from "./orlogoForm";
+import ServiceIncomeForm from "./serviceIncomeForm";
+import EmployeeIncomeForm from "./employeeIncomeForm";
 // import moment from "moment";
 
 export default function Agenda({ data, events }) {
@@ -74,27 +76,31 @@ export default function Agenda({ data, events }) {
 
   return (
     <div>
-      {/* <div className="m-2">
-        <Button
-          // className="bg-blue-200 hover:bg-blue-400 hover:text-white"
-          className="bg-gray-300 font-semibold"
-          onClick={() =>
-            events.handleFormData({
-              header: "Хэрэглэгч нэмэх",
-              formType: "createUserForm",
-              form: "post",
-            })
-          }
-        >
-          Шинээр хэрэглэгч нэмэх
-        </Button>
-      </div> */}
       <div>
+        <h3>Total Income</h3>
         <OrlogoForm data={data} events={events} />
       </div>
-      <div className="my-2 p-1 bg-blue-200">
+      <div className="mt-2 p-1 bg-blue-200">
         {data?.orlogo.map((item, index) => (
           <div className="" key={index}>
+            <p>Орлого: {item.orlogo}</p>
+          </div>
+        ))}
+      </div>
+      <div className="my-12">
+        <h3>Income by Service</h3>
+        <ServiceIncomeForm data={data} events={events} />
+        {data?.reportList?.list3.map((item, index) => (
+          <div className="bg-blue-200" key={index}>
+            <p>Орлого: {item.orlogo}</p>
+          </div>
+        ))}
+      </div>
+      <div>
+        <h3>Income by Employee</h3>
+        <EmployeeIncomeForm data={data} events={events} />
+        {data?.reportList?.list2.map((item, index) => (
+          <div className="bg-blue-200" key={index}>
             <p>Орлого: {item.orlogo}</p>
           </div>
         ))}

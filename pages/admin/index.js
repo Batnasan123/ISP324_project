@@ -125,8 +125,8 @@ function Presentation() {
       await service.loadAllServices();
       await order.getAllOrders();
       const dateRange = {
-        startDate: "2023/11/01",
-        endDate: "2023/12/20",
+        startDate: "2023/01/01",
+        endDate: "2023/12/31",
       };
       await report.getTotalIncome(dateRange);
       // await report.getEmployeeIncome();
@@ -152,15 +152,6 @@ function Presentation() {
       // this now gets called when the component unmounts
     };
   }, []);
-  // useEffect(() => {
-  //   if (!localStorage.getItem("accessToken")) {
-  //     router.push("/");
-  //     message.error("Та нэвтэрч орно уу!");
-  //   }
-  //   console.log("useState");
-  //   user.getAllUsers();
-  //   order.getAllOrders();
-  // }, []);
 
   const [mainForm, setMainForm] = useState({
     formType: "",
@@ -392,6 +383,12 @@ function Presentation() {
   const getTotalIncome = async (value) => {
     await report.getTotalIncome(value);
   };
+  const getEmployeeIncome = async (value) => {
+    await report.getEmployeeIncome(value);
+  };
+  const getServiceIncome = async (value) => {
+    await report.getServiceIncome(value);
+  };
   return (
     <React.Fragment>
       <h1
@@ -443,6 +440,8 @@ function Presentation() {
           handleDeleteOrder: handleDeleteOrder,
           handleUpdateOrder: handleUpdateOrder,
           getTotalIncome: getTotalIncome,
+          getEmployeeIncome: getEmployeeIncome,
+          getServiceIncome: getServiceIncome,
         }}
       />
     </React.Fragment>

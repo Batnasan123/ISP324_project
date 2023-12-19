@@ -86,8 +86,9 @@ const ReportProvider = (props) => {
     }
   };
 
-  const getEmployeeIncome = async (employeeId) => {
+  const getEmployeeIncome = async ({ employeeId, startDate, endDate }) => {
     // console.log("worked");
+    let body = { startDate, endDate };
     setState({
       ...state,
       status: "loading",
@@ -96,8 +97,10 @@ const ReportProvider = (props) => {
 
     var config = {
       url: `/report/getEmployeeIncome/${employeeId}`,
-      method: "get",
-      data: {},
+      method: "post",
+      data: {
+        ...body,
+      },
     };
 
     try {
@@ -125,8 +128,9 @@ const ReportProvider = (props) => {
       });
     }
   };
-  const getServiceIncome = async (serviceId) => {
-    // console.log("worked");
+  const getServiceIncome = async ({ serviceId, startDate, endDate }) => {
+    // console.log("serviceId", serviceId);
+    let body = { startDate, endDate };
     setState({
       ...state,
       status: "loading",
@@ -135,8 +139,10 @@ const ReportProvider = (props) => {
 
     var config = {
       url: `/report/getServiceIncome/${serviceId}`,
-      method: "get",
-      data: {},
+      method: "post",
+      data: {
+        ...body,
+      },
     };
 
     try {
